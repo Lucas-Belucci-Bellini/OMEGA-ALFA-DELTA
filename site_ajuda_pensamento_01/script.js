@@ -24,6 +24,23 @@ if (contactForm && formResult) {
   });
 }
 
+// Handler para o novo formulário multi-tipo
+const multiForm = document.querySelector('.multi-form');
+if (multiForm) {
+  multiForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    
+    // Coletar dados do formulário
+    const formData = new FormData(multiForm);
+    const dados = Object.fromEntries(formData);
+    
+    // Exibir alerta com os dados
+    alert('Formulário enviado com sucesso!\n\nDados coletados:\n' + JSON.stringify(dados, null, 2));
+    
+    multiForm.reset();
+  });
+}
+
 const canvas = document.getElementById('demoCanvas');
 
 if (canvas) {

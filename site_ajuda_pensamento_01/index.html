@@ -281,6 +281,178 @@
         </div>
         <canvas id="demoCanvas" width="600" height="220"></canvas>
       </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Formulários</p>
+          <h2>Todos os tipos de formulários HTML5.</h2>
+        </div>
+
+        <form class="multi-form">
+          <div class="form-group">
+            <label for="select-exemplo">
+              <strong>Select (10 opções)</strong>
+              <select id="select-exemplo" name="select">
+                <option value="">Selecione uma opção</option>
+                <option value="opcao1">Opção 1</option>
+                <option value="opcao2">Opção 2</option>
+                <option value="opcao3">Opção 3</option>
+                <option value="opcao4">Opção 4</option>
+                <option value="opcao5">Opção 5</option>
+                <option value="opcao6">Opção 6</option>
+                <option value="opcao7">Opção 7</option>
+                <option value="opcao8">Opção 8</option>
+                <option value="opcao9">Opção 9</option>
+                <option value="opcao10">Opção 10</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <strong>Radio Buttons (10 opções)</strong>
+            <fieldset>
+              <legend>Escolha uma alternativa</legend>
+              <label><input type="radio" name="radio-group" value="radio1" /> Radio 1</label>
+              <label><input type="radio" name="radio-group" value="radio2" /> Radio 2</label>
+              <label><input type="radio" name="radio-group" value="radio3" /> Radio 3</label>
+              <label><input type="radio" name="radio-group" value="radio4" /> Radio 4</label>
+              <label><input type="radio" name="radio-group" value="radio5" /> Radio 5</label>
+              <label><input type="radio" name="radio-group" value="radio6" /> Radio 6</label>
+              <label><input type="radio" name="radio-group" value="radio7" /> Radio 7</label>
+              <label><input type="radio" name="radio-group" value="radio8" /> Radio 8</label>
+              <label><input type="radio" name="radio-group" value="radio9" /> Radio 9</label>
+              <label><input type="radio" name="radio-group" value="radio10" /> Radio 10</label>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <strong>Checkboxes (10 opções)</strong>
+            <fieldset>
+              <legend>Selecione as opções</legend>
+              <label><input type="checkbox" name="check1" /> Checkbox 1</label>
+              <label><input type="checkbox" name="check2" /> Checkbox 2</label>
+              <label><input type="checkbox" name="check3" /> Checkbox 3</label>
+              <label><input type="checkbox" name="check4" /> Checkbox 4</label>
+              <label><input type="checkbox" name="check5" /> Checkbox 5</label>
+              <label><input type="checkbox" name="check6" /> Checkbox 6</label>
+              <label><input type="checkbox" name="check7" /> Checkbox 7</label>
+              <label><input type="checkbox" name="check8" /> Checkbox 8</label>
+              <label><input type="checkbox" name="check9" /> Checkbox 9</label>
+              <label><input type="checkbox" name="check10" /> Checkbox 10</label>
+            </fieldset>
+          </div>
+
+          <div class="form-group-row">
+            <label>
+              <strong>Input Text</strong>
+              <input type="text" name="texto" placeholder="Digite um texto" />
+            </label>
+
+            <label>
+              <strong>Input Email</strong>
+              <input type="email" name="email" placeholder="seu@email.com" />
+            </label>
+
+            <label>
+              <strong>Input Password</strong>
+              <input type="password" name="senha" placeholder="Sua senha" />
+            </label>
+
+            <label>
+              <strong>Input Number</strong>
+              <input type="number" name="numero" placeholder="Digite um número" min="0" max="100" />
+            </label>
+
+            <label>
+              <strong>Input Date</strong>
+              <input type="date" name="data" />
+            </label>
+
+            <label>
+              <strong>Input Time</strong>
+              <input type="time" name="hora" />
+            </label>
+
+            <label>
+              <strong>Input URL</strong>
+              <input type="url" name="url" placeholder="https://exemplo.com" />
+            </label>
+
+            <label>
+              <strong>Input Tel</strong>
+              <input type="tel" name="telefone" placeholder="(11) 99999-9999" />
+            </label>
+
+            <label>
+              <strong>Input Search</strong>
+              <input type="search" name="busca" placeholder="Buscar..." />
+            </label>
+
+            <label>
+              <strong>Input Color</strong>
+              <input type="color" name="cor" value="#2563eb" />
+            </label>
+          </div>
+
+          <div class="form-group-row">
+            <label>
+              <strong>Input Range (0-100)</strong>
+              <input type="range" name="range" min="0" max="100" value="50" />
+            </label>
+
+            <label>
+              <strong>Input Month</strong>
+              <input type="month" name="mes" />
+            </label>
+
+            <label>
+              <strong>Input Week</strong>
+              <input type="week" name="semana" />
+            </label>
+
+            <label>
+              <strong>Input Datetime-local</strong>
+              <input type="datetime-local" name="data-hora" />
+            </label>
+
+            <label>
+              <strong>Input File</strong>
+              <input type="file" name="arquivo" accept="image/*" />
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <strong>Textarea</strong>
+              <textarea name="mensagem-longa" rows="4" placeholder="Digite uma mensagem longa..."></textarea>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <strong>Datalist com 10 opções</strong>
+              <input type="text" name="datalist" placeholder="Digite ou selecione..." list="opcoes-list" />
+              <datalist id="opcoes-list">
+                <option value="Opção A">
+                <option value="Opção B">
+                <option value="Opção C">
+                <option value="Opção D">
+                <option value="Opção E">
+                <option value="Opção F">
+                <option value="Opção G">
+                <option value="Opção H">
+                <option value="Opção I">
+                <option value="Opção J">
+              </datalist>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Enviar Formulário</button>
+            <button class="btn btn-secondary" type="reset">Limpar Formulário</button>
+          </div>
+        </form>
+      </section>
     </main>
 
     <footer id="contato" class="footer">

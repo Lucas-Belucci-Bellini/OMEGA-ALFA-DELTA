@@ -317,6 +317,76 @@ canvas {
   background: #020617;
 }
 
+.multi-form {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.form-group fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group fieldset legend {
+  margin-bottom: 0.5rem;
+}
+
+.form-group fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.form-group fieldset input[type="radio"],
+.form-group fieldset input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.form-group-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group-row label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group-row strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.form-actions .btn {
+  flex: 1;
+  text-align: center;
+}
+
 .footer {
   width: min(1120px, calc(100% - 2rem));
   margin: 2rem auto 1rem;
