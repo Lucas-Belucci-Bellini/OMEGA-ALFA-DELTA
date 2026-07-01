@@ -1,0 +1,17 @@
+/* Estilo base do botão */
+.btn-jogo {
+    display: inline-block; /* Permite colocar margens e preenchimento */
+    background-color: #ffaa00; /* Cor de fundo do botão (laranja) */
+    color: #ffffff; /* Cor da letra (branco) */
+    padding: 10px 20px; /* Tamanho do botão (espaço interno) */
+    text-decoration: none; /* Tira aquele sublinhado padrão dos links */
+    font-weight: bold; /* Deixa a letra em negrito */
+    border-radius: 5px; /* Deixa as bordas arredondadas */
+    transition: 0.3s; /* Deixa a animação suave ao passar o mouse */
+}
+
+/* Estilo para quando passar o mouse por cima (Hover) */
+.btn-jogo:hover {
+    background-color: #cc8800; /* Fica um laranja mais escuro */
+    transform: scale(1.05); /* Dá uma leve aumentada no tamanho */
+}
