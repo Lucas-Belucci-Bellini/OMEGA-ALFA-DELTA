@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+
+header {
+    background-color: plum;
+    height: 10vh;
+    border: 1px solid gray;
+    align-items: center;
+}
+
+
+main {
+    height: 80vh;
+}
+
+
+footer {
+    background-color: aqua;
+    height: 10vh;
+    border: 1px solid gray;
+}
+
+
+.container {
+    background-color: aqua;
+
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.quadrado {
+    width: 50px;
+    height: 50px;
+}
+
+.vermelho {
+    background-color: red;
+}
+
+.amarelo {
+    background-color: yellow;
+}
+
+.azul {
+    background-color: blue;
+}
