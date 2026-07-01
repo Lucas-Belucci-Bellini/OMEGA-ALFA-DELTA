@@ -210,6 +210,10 @@
               </label>
 
               <label>
+                <input type="text" name="nome" required /> Quero receber novidades
+              </label>
+
+              <label>
                 Mensagem
                 <textarea name="mensagem" rows="5" placeholder="Escreva sua mensagem"></textarea>
               </label>
@@ -451,6 +455,80 @@
             <button class="btn btn-primary" type="submit">Enviar Formulário</button>
             <button class="btn btn-secondary" type="reset">Limpar Formulário</button>
           </div>
+        </form>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Cadastro</p>
+          <h2>Formulário de cadastro de usuário.</h2>
+        </div>
+
+        <form id="cadastroForm" class="cadastro-form">
+          <div class="form-group">
+            <label for="nome">
+              <strong>Nome Completo</strong>
+              <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required />
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="email-cadastro">
+              <strong>E-mail</strong>
+              <input type="email" id="email-cadastro" name="email" placeholder="seu@email.com" required />
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="senha-cadastro">
+              <strong>Senha</strong>
+              <input type="password" id="senha-cadastro" name="senha" placeholder="Digite sua senha" required />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label for="cidade">
+              <strong>Cidade</strong>
+              <select id="cidade" name="cidade" required>
+                <option value="">Selecione uma cidade</option>
+                <option value="sao-paulo">São Paulo</option>
+                <option value="rio-janeiro">Rio de Janeiro</option>
+                <option value="belo-horizonte">Belo Horizonte</option>
+                <option value="brasilia">Brasília</option>
+                <option value="salvador">Salvador</option>
+                <option value="fortaleza">Fortaleza</option>
+                <option value="manaus">Manaus</option>
+                <option value="recife">Recife</option>
+                <option value="curitiba">Curitiba</option>
+                <option value="porto-alegre">Porto Alegre</option>
+              </select>
+            </label>
+
+            <label for="genero">
+              <strong>Gênero</strong>
+              <select id="genero" name="genero" required>
+                <option value="">Selecione um gênero</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="outro">Outro</option>
+                <option value="prefiro-nao-informar">Prefiro não informar</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="termos" required />
+              <strong>Aceito os termos e condições de uso</strong>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Cadastrar</button>
+            <button class="btn btn-secondary" type="reset">Limpar</button>
+          </div>
+
+          <p id="cadastro-result" class="form-result" aria-live="polite"></p>
         </form>
       </section>
     </main>

@@ -387,6 +387,102 @@ canvas {
   text-align: center;
 }
 
+.cadastro-form {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cadastro-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.cadastro-form .form-group label {
+  display: flex;
+  flex-direction: column;
+}
+
+.cadastro-form .form-group strong {
+  margin-bottom: 0.4rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.cadastro-form input,
+.cadastro-form select {
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.cadastro-form input:focus,
+.cadastro-form select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row strong {
+  margin-bottom: 0.4rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.checkbox-label strong {
+  margin: 0;
+}
+
+.cadastro-form .form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cadastro-form .form-actions .btn {
+  flex: 1;
+  padding: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .footer {
   width: min(1120px, calc(100% - 2rem));
   margin: 2rem auto 1rem;

@@ -41,6 +41,43 @@ if (multiForm) {
   });
 }
 
+// Handler para o formulário de cadastro
+const cadastroForm = document.getElementById('cadastroForm');
+const cadastroResult = document.getElementById('cadastro-result');
+
+if (cadastroForm && cadastroResult) {
+  cadastroForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    
+    // Coletar dados do formulário
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email-cadastro').value;
+    const senha = document.getElementById('senha-cadastro').value;
+    const cidade = document.getElementById('cidade').value;
+    const genero = document.getElementById('genero').value;
+    const termos = document.querySelector('input[name="termos"]').checked;
+    
+    // Validar se os termos foram aceitos
+    if (!termos) {
+      cadastroResult.textContent = 'Por favor, aceite os termos e condições para continuar.';
+      cadastroResult.style.color = '#dc2626';
+      return;
+    }
+    
+    // Exibir mensagem de sucesso
+    cadastroResult.textContent = `Cadastro realizado com sucesso! Bem-vindo ${nome}! Um e-mail de confirmação foi enviado para ${email}.`;
+    cadastroResult.style.color = var(--secondary);
+    
+    // Limpar o formulário
+    cadastroForm.reset();
+    
+    // Limpar mensagem após 5 segundos
+    setTimeout(() => {
+      cadastroResult.textContent = '';
+    }, 5000);
+  });
+}
+
 const canvas = document.getElementById('demoCanvas');
 
 if (canvas) {
