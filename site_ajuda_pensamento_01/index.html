@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Exemplo de site comum com HTML, CSS e JavaScript" />
+    <title>Site Comum - Exemplo Completo</title>
+    <link rel="stylesheet" href="sytle.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="logo" href="#inicio">NovaWeb</a>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <nav class="nav-links" aria-label="Menu principal">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Site comum moderno</p>
+          <h1>Crie uma presença online forte e profissional.</h1>
+          <p>
+            Este exemplo reúne elementos básicos e avançados de HTML, estilos responsivos,
+            formulários, tabelas, mídia e uma camada de interatividade com JavaScript.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contato">Fale conosco</a>
+            <a class="btn btn-secondary" href="#servicos">Ver serviços</a>
+          </div>
+          <ul class="hero-highlights">
+            <li>Layout responsivo</li>
+            <li>Semântica HTML5</li>
+            <li>Formulários completos</li>
+          </ul>
+        </div>
+
+        <div class="hero-card" aria-label="Ilustração do site">
+          <svg viewBox="0 0 400 300" role="img" aria-label="Gráfico de crescimento">
+            <rect x="40" y="40" width="320" height="220" rx="20" fill="#0f172a"></rect>
+            <path d="M80 220 L150 170 L210 190 L290 120 L330 145" stroke="#38bdf8" stroke-width="8" fill="none" stroke-linecap="round"></path>
+            <circle cx="150" cy="170" r="8" fill="#f8fafc"></circle>
+            <circle cx="290" cy="120" r="8" fill="#f8fafc"></circle>
+            <rect x="80" y="70" width="110" height="20" rx="10" fill="#cbd5e1"></rect>
+            <rect x="80" y="100" width="80" height="12" rx="6" fill="#64748b"></rect>
+          </svg>
+        </div>
+      </section>
+
+      <section id="sobre" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Sobre</p>
+          <h2>Uma estrutura completa para qualquer projeto.</h2>
+        </div>
+
+        <div class="about-grid">
+          <article>
+            <h3>Por que usar esta abordagem?</h3>
+            <p>
+              Um site comum precisa combinar clareza, navegação intuitiva, acessibilidade e
+              um visual agradável. Aqui, cada seção foi organizada para demonstrar os recursos
+              mais usados no desenvolvimento web.
+            </p>
+            <ul>
+              <li>Estrutura semântica com cabeçalho, navegação, conteúdo e rodapé.</li>
+              <li>Uso de listas, tabelas, blocos de citação e detalhes.</li>
+              <li>Elementos interativos e responsivos para melhorar a experiência.</li>
+            </ul>
+          </article>
+
+          <aside class="info-box">
+            <h3>Resumo rápido</h3>
+            <dl>
+              <div>
+                <dt>HTML</dt>
+                <dd>Estrutura e conteúdo semântico.</dd>
+              </div>
+              <div>
+                <dt>CSS</dt>
+                <dd>Estilo, layout e responsividade.</dd>
+              </div>
+              <div>
+                <dt>JavaScript</dt>
+                <dd>Interatividade e comportamento.</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section id="servicos" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Serviços</p>
+          <h2>O que podemos oferecer.</h2>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Landing Pages</h3>
+            <p>Páginas objetivas com foco em conversão e boa experiência de leitura.</p>
+          </article>
+          <article class="card">
+            <h3>Sites Institucionais</h3>
+            <p>Apresentação profissional para empresas, produtos e serviços.</p>
+          </article>
+          <article class="card">
+            <h3>E-commerces</h3>
+            <p>Estruturas modernas com catálogo, carrinho e formulário de contato.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="portfolio" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Portfólio</p>
+          <h2>Exemplos de blocos visuais.</h2>
+        </div>
+
+        <div class="gallery">
+          <figure class="thumb thumb-a">
+            <figcaption>Landing page</figcaption>
+          </figure>
+          <figure class="thumb thumb-b">
+            <figcaption>Blog institucional</figcaption>
+          </figure>
+          <figure class="thumb thumb-c">
+            <figcaption>Loja online</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Estrutura</p>
+          <h2>Tabela de planos e conteúdo complementar.</h2>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Planos de desenvolvimento</caption>
+            <thead>
+              <tr>
+                <th>Plano</th>
+                <th>Itens</th>
+                <th>Prazo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Básico</td>
+                <td>Home, Sobre e Contato</td>
+                <td>3 dias</td>
+              </tr>
+              <tr>
+                <td>Intermediário</td>
+                <td>Blog, Serviços e Formulário</td>
+                <td>7 dias</td>
+              </tr>
+              <tr>
+                <td>Completo</td>
+                <td>Loja, Painel e Integrações</td>
+                <td>15 dias</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="two-col">
+          <div>
+            <h2>Formulário de contato</h2>
+            <form id="contactForm">
+              <label>
+                Nome
+                <input type="text" name="nome" placeholder="Seu nome" required />
+              </label>
+
+              <label>
+                E-mail
+                <input type="email" name="email" placeholder="seu@email.com" required />
+              </label>
+
+              <label>
+                Assunto
+                <select name="assunto">
+                  <option>Orçamento</option>
+                  <option>Informação</option>
+                  <option>Suporte</option>
+                </select>
+              </label>
+
+              <fieldset>
+                <legend>Preferência de contato</legend>
+                <label><input type="radio" name="contato" value="email" checked /> E-mail</label>
+                <label><input type="radio" name="contato" value="telefone" /> Telefone</label>
+              </fieldset>
+
+              <label>
+                <input type="checkbox" name="newsletter" /> Quero receber novidades
+              </label>
+
+              <label>
+                Mensagem
+                <textarea name="mensagem" rows="5" placeholder="Escreva sua mensagem"></textarea>
+              </label>
+
+              <button class="btn btn-primary" type="submit">Enviar</button>
+              <p id="form-result" class="form-result" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div>
+            <h2>Recursos avançados</h2>
+            <details>
+              <summary>O que um site comum deve ter?</summary>
+              <p>
+                Navegação clara, conteúdo bem organizado, acessibilidade, formulário, SEO básico e
+                CSS responsivo.
+              </p>
+            </details>
+            <details>
+              <summary>Por que usar semântica HTML?</summary>
+              <p>
+                Ela melhora a leitura do código, a acessibilidade e o posicionamento do site nos motores de busca.
+              </p>
+            </details>
+            <blockquote>
+              “Um bom site é simples, útil e pensado para quem vai utilizá-lo.”
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Mídia</p>
+          <h2>Conteúdo multimídia e listas.</h2>
+        </div>
+
+        <div class="media-grid">
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Vídeo de exemplo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+
+          <div>
+            <h3>Lista ordenada</h3>
+            <ol>
+              <li>Planejar a estrutura</li>
+              <li>Definir o estilo</li>
+              <li>Adicionar interatividade</li>
+              <li>Validar e publicar</li>
+            </ol>
+
+            <h3>Lista de benefícios</h3>
+            <ul>
+              <li>Mais profissionalismo</li>
+              <li>Melhor experiência</li>
+              <li>Maior alcance</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Interatividade</p>
+          <h2>Canvas animado com JavaScript.</h2>
+        </div>
+        <canvas id="demoCanvas" width="600" height="220"></canvas>
+      </section>
+    </main>
+
+    <footer id="contato" class="footer">
+      <div>
+        <h2>Vamos conversar?</h2>
+        <p>Entre em contato para criar seu próximo projeto web.</p>
+      </div>
+      <address>
+        E-mail: contato@novawer.com.br<br />
+        Telefone: (11) 99999-9999<br />
+        <time datetime="2026-07-01">Atualizado em 01/07/2026</time>
+      </address>
+      <p>© <span id="year"></span> NovaWeb. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
