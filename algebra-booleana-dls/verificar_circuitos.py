@@ -150,6 +150,27 @@ BANK_OP = {
     "XNOR": lambda m, a, b: [~(a ^ b) & m],
 }
 
+GATE3 = {
+    "AND-3":  lambda a, b, c: [a & b & c],
+    "OR-3":   lambda a, b, c: [a | b | c],
+    "NAND-3": lambda a, b, c: [1 - (a & b & c)],
+    "NOR-3":  lambda a, b, c: [1 - (a | b | c)],
+}
+
+# Somadores: a saida e [S, Cout].
+ARITH1 = {
+    "HALF-ADDER": lambda a, b: [a ^ b, a & b],
+    "FULL-ADDER": lambda a, b, ci: [a ^ b ^ ci, 1 if (a + b + ci) >= 2 else 0],
+}
+
+SELECT1 = {
+    # SEL=0 -> A, SEL=1 -> B
+    "MUX-2": lambda a, b, s: [b if s else a],
+    "DEC-2": lambda s1, s0: [1 if k == (s1 << 1 | s0) else 0 for k in range(4)],
+    "DEC-3": lambda s2, s1, s0: [1 if k == (s2 << 2 | s1 << 1 | s0) else 0
+                                 for k in range(8)],
+}
+
 ACTIVITY = {
     "Q1-IDENTIDADES":    lambda a, b, c, d, e, f: [a, 1, c, d, 0, f],
     "Q2-ASSOCIATIVA-OU": lambda a, b, c: [a | b | c, a | b | c],
@@ -219,6 +240,43 @@ def main():
             else:
                 cases = [(x, y) for x in vals for y in vals]
             check(name, (lambda o: (lambda *a: o(mask, *a)))(op), cases)
+
+    print("\nPortas de 3 entradas (exaustivo):")
+    for g, fn in GATE3.items():
+        check(g, fn, list(itertools.product([0, 1], repeat=3)))
+
+    print("\nAritmetica:")
+    for g, fn in ARITH1.items():
+        n = len(CHIPS[g]["InputPins"])
+        check(g, fn, list(itertools.product([0, 1], repeat=n)))
+
+    for bits in (4, 8):
+        mask = (1 << bits) - 1
+        # Somador de 4 bits: exaustivo com carry. 8 bits: amostragem ampla,
+        # incluindo os casos de estouro.
+        if bits == 4:
+            vals = list(range(16))
+        else:
+            vals = [0, 1, 2, 5, 15, 16, 42, 85, 128, 170, 200, 254, 255]
+        cases = [(x, y, ci) for x in vals for y in vals for ci in (0, 1)]
+
+        def adder(x, y, ci, m=mask, w=bits):
+            t = x + y + ci
+            return [t & m, 1 if t > m else 0]
+
+        check(f"ADDER-{bits}", adder, cases)
+
+    print("\nSelecao e decodificacao (exaustivo):")
+    for g, fn in SELECT1.items():
+        n = len(CHIPS[g]["InputPins"])
+        check(g, fn, list(itertools.product([0, 1], repeat=n)))
+
+    for bits in (4, 8):
+        vals = list(range(16)) if bits == 4 else [0, 1, 42, 85, 128, 170, 255]
+        check(f"MUX-2-{bits}", lambda x, y, s: [y if s else x],
+              [(x, y, s) for x in vals for y in vals for s in (0, 1)])
+        check(f"EQUALS-{bits}", lambda x, y: [1 if x == y else 0],
+              [(x, y) for x in vals for y in vals])
 
     print("\nCircuitos da atividade (exaustivo):")
     for name, fn in ACTIVITY.items():

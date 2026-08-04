@@ -13,7 +13,7 @@ v2.3.0 (formato de save `ChipDescription` v2.3.0).
 
 | Arquivo | Conteúdo |
 |---|---|
-| `Projects/ALGEBRA-BOOLEANA/` | O projeto pronto para abrir no simulador (35 chips) |
+| `Projects/ALGEBRA-BOOLEANA/` | O projeto pronto para abrir no simulador (50 chips) |
 | `SOLUCOES.md` | Resposta escrita das 5 questões, passo a passo |
 | `gerar_circuitos.py` | Gera todos os chips do zero |
 | `verificar_circuitos.py` | Simula os JSON até a NAND e confere as tabelas-verdade |
@@ -78,6 +78,36 @@ IN-N ──▶ [SPLIT N→1] ──▶ N cópias da porta de 1 bit ──▶ [ME
 O split entrega o bit `i` na saída de ID `1+i` e o merge recebe o bit `i` na
 entrada de ID `i` — a ligação é direta, bit a bit, mantendo a ordem.
 
+### Portas de 3 entradas
+
+`AND-3`, `OR-3`, `NAND-3`, `NOR-3` — montadas encadeando as de 2 entradas.
+
+### Aritmética
+
+| Chip | Função |
+|---|---|
+| `HALF-ADDER` | `S = A ⊕ B`, `C = A · B` |
+| `FULL-ADDER` | Dois meio-somadores + OR: `S = A⊕B⊕Cin`, `Cout = AB + (A⊕B)·Cin` |
+| `ADDER-4` | Somador de 4 bits, ripple carry, com `CIN` e `COUT` |
+| `ADDER-8` | Somador de 8 bits, ripple carry, com `CIN` e `COUT` |
+
+Nos somadores de barramento o encadeamento do carry começa no bit menos
+significativo e sobe até o mais significativo. Como o índice `0` do split é o
+bit mais significativo, a cadeia percorre os índices de trás para frente.
+
+### Seleção e decodificação
+
+| Chip | Função |
+|---|---|
+| `MUX-2` | `SEL=0 → A`, `SEL=1 → B`, ou seja `(~SEL·A) + (SEL·B)` |
+| `MUX-2-4` / `MUX-2-8` | Mesmo mux aplicado ao barramento inteiro, `SEL` único |
+| `DEC-2` | Decodificador 2 → 4 saídas (one-hot) |
+| `DEC-3` | Decodificador 3 → 8 saídas (one-hot) |
+| `EQUALS-4` / `EQUALS-8` | Compara dois barramentos: 1 quando `A = B` |
+
+Os comparadores usam um `XNOR` por bit (1 quando os dois bits são iguais)
+seguido de uma árvore de `AND`.
+
 ### Circuitos da atividade
 
 | Chip | Questão | O que mostra |
@@ -116,11 +146,13 @@ recursivamente até chegar na NAND e compara com a tabela-verdade esperada.
 Resultado atual:
 
 ```
-TODOS OS CIRCUITOS CORRETOS - 2751 casos de teste, 35 chips, tudo reduzido a NAND.
+TODOS OS CIRCUITOS CORRETOS - 4580 casos de teste, 50 chips, tudo reduzido a NAND.
 ```
 
-Cobertura: exaustiva para 1 bit e 4 bits (todas as combinações de entrada),
-amostragem ampla para 8 bits, exaustiva para os circuitos da atividade.
+Cobertura: exaustiva para 1 bit, 4 bits, portas de 3 entradas, `MUX-2`, `DEC-2`,
+`DEC-3`, somadores de 1 bit e circuitos da atividade; amostragem ampla para os
+blocos de 8 bits. O `ADDER-4` é testado nas 512 combinações possíveis
+(`A × B × Cin`), incluindo todos os casos de estouro.
 
 ---
 

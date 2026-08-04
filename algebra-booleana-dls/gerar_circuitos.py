@@ -359,6 +359,236 @@ def build_banks():
 
 
 # ==========================================================================
+# 3b. Portas de 3 entradas
+# ==========================================================================
+def build_gates3():
+    for base, colour in (("AND", COL["and"]), ("OR", COL["or"])):
+        c = Chip(f"{base}-3", colour, size=(0.95, 0.625))
+        a = c.add_input("A", (-8.0, 2.0))
+        b = c.add_input("B", (-8.0, 0.0))
+        d = c.add_input("C", (-8.0, -2.0))
+        out = c.add_output("OUT", (6.0, 0.0))
+        g1 = c.add(base, (-3.0, 1.0))
+        g2 = c.add(base, (1.5, 0.0))
+        c.wire(a, g1.i(0)); c.wire(b, g1.i(1))
+        c.wire(g1.o(), g2.i(0)); c.wire(d, g2.i(1))
+        c.wire(g2.o(), out)
+        c.build()
+
+    # NAND-3 / NOR-3 = negacao das anteriores
+    for base, colour in (("NAND", COL["nand"]), ("NOR", COL["nor"])):
+        src = {"NAND": "AND-3", "NOR": "OR-3"}[base]
+        c = Chip(f"{base}-3", colour, size=(0.95, 0.625))
+        a = c.add_input("A", (-8.0, 2.0))
+        b = c.add_input("B", (-8.0, 0.0))
+        d = c.add_input("C", (-8.0, -2.0))
+        out = c.add_output("OUT", (6.0, 0.0))
+        g = c.add(src, (-2.0, 0.0))
+        n = c.add("NOT", (2.5, 0.0))
+        c.wire(a, g.i(0)); c.wire(b, g.i(1)); c.wire(d, g.i(2))
+        c.wire(g.o(), n.i(0)); c.wire(n.o(), out)
+        c.build()
+
+
+# ==========================================================================
+# 3c. Aritmetica: meio somador, somador completo e somadores de 4/8 bits
+# ==========================================================================
+def build_adders():
+    # ---- HALF-ADDER : S = A xor B, C = A . B ----------------------------
+    c = Chip("HALF-ADDER", COL["quest"], size=(1.3, 0.625), name_location=1)
+    a = c.add_input("A", (-8.0, 1.5))
+    b = c.add_input("B", (-8.0, -1.5))
+    s = c.add_output("S", (6.5, 1.5))
+    co = c.add_output("C", (6.5, -1.5))
+    x = c.add("XOR", (-1.5, 1.5))
+    n = c.add("AND", (-1.5, -1.5))
+    c.wire(a, x.i(0)); c.wire(b, x.i(1)); c.wire(x.o(), s)
+    c.wire(a, n.i(0)); c.wire(b, n.i(1)); c.wire(n.o(), co)
+    c.build()
+
+    # ---- FULL-ADDER : dois meio-somadores + OR --------------------------
+    # S = (A xor B) xor Cin ; Cout = A.B + Cin.(A xor B)
+    c = Chip("FULL-ADDER", COL["quest"], size=(1.4, 0.75), name_location=1)
+    a = c.add_input("A", (-9.0, 2.5))
+    b = c.add_input("B", (-9.0, 0.5))
+    ci = c.add_input("CIN", (-9.0, -2.5))
+    s = c.add_output("S", (7.5, 1.5))
+    co = c.add_output("COUT", (7.5, -2.0))
+    h1 = c.add("HALF-ADDER", (-4.5, 1.5))
+    h2 = c.add("HALF-ADDER", (0.5, 0.0))
+    o = c.add("OR", (4.5, -2.0))
+    c.wire(a, h1.i(0)); c.wire(b, h1.i(1))
+    c.wire(h1.o(0), h2.i(0)); c.wire(ci, h2.i(1))
+    c.wire(h2.o(0), s)
+    c.wire(h2.o(1), o.i(0)); c.wire(h1.o(1), o.i(1))
+    c.wire(o.o(), co)
+    c.build()
+
+    # ---- ADDER-4 / ADDER-8 : ripple carry -------------------------------
+    for bits in (4, 8):
+        split = {4: "4-1BIT", 8: "8-1BIT"}[bits]
+        merge = {4: "1-4BIT", 8: "1-8BIT"}[bits]
+        step = 0.6875
+        top = (bits - 1) * step / 2.0
+        c = Chip(f"ADDER-{bits}", COL["quest"],
+                 size=(1.5, round(max(0.75, bits * 0.1325), 4)), name_location=1)
+        pa = c.add_input(f"A ({bits} bits)", (-9.5, top + 1.5), bits)
+        pb = c.add_input(f"B ({bits} bits)", (-9.5, -top - 1.5), bits)
+        pci = c.add_input("CIN", (-9.5, -top - 3.0))
+        ps = c.add_output(f"S ({bits} bits)", (7.5, 0.0), bits)
+        pco = c.add_output("COUT", (7.5, top + 2.0))
+
+        sa = c.add(split, (-5.5, top + 1.5))
+        sb = c.add(split, (-5.5, -top - 1.5))
+        mg = c.add(merge, (4.0, 0.0))
+        c.wire(pa, sa.i(0))
+        c.wire(pb, sb.i(0))
+
+        # indice 0 = bit mais significativo, entao o encadeamento do carry
+        # comeca no indice bits-1 (LSB) e sobe ate o indice 0 (MSB).
+        carry = pci
+        for i in range(bits - 1, -1, -1):
+            y = round(top - i * step, 4)
+            fa = c.add("FULL-ADDER", (-0.5, y))
+            c.wire(sa.o(i), fa.i(0))
+            c.wire(sb.o(i), fa.i(1))
+            c.wire(carry, fa.i(2))
+            c.wire(fa.o(0), mg.i(i))
+            carry = fa.o(1)
+        c.wire(carry, pco)
+        c.wire(mg.o(), ps)
+        c.build()
+
+
+# ==========================================================================
+# 3d. Selecao: multiplexadores
+# ==========================================================================
+def build_mux():
+    # MUX-2 : SEL=0 -> A , SEL=1 -> B    =>  (~SEL . A) + (SEL . B)
+    c = Chip("MUX-2", COL["nor"], size=(1.2, 0.625), name_location=1)
+    a = c.add_input("A", (-9.0, 2.5))
+    b = c.add_input("B", (-9.0, 0.5))
+    sel = c.add_input("SEL", (-9.0, -2.5))
+    out = c.add_output("OUT", (7.0, 0.0))
+    ns = c.add("NOT", (-6.0, -4.0))
+    g0 = c.add("AND", (-2.0, 2.0))
+    g1 = c.add("AND", (-2.0, -0.5))
+    o = c.add("OR", (2.5, 1.0))
+    c.wire(sel, ns.i(0))
+    c.wire(a, g0.i(0)); c.wire(ns.o(), g0.i(1))
+    c.wire(b, g1.i(0)); c.wire(sel, g1.i(1))
+    c.wire(g0.o(), o.i(0)); c.wire(g1.o(), o.i(1))
+    c.wire(o.o(), out)
+    c.build()
+
+    # Versoes de barramento: SEL unico para todos os bits.
+    for bits in (4, 8):
+        split = {4: "4-1BIT", 8: "8-1BIT"}[bits]
+        merge = {4: "1-4BIT", 8: "1-8BIT"}[bits]
+        step = 0.6875
+        top = (bits - 1) * step / 2.0
+        c = Chip(f"MUX-2-{bits}", COL["nor"],
+                 size=(1.4, round(max(0.75, bits * 0.1325), 4)), name_location=1)
+        pa = c.add_input(f"A ({bits} bits)", (-9.5, top + 1.5), bits)
+        pb = c.add_input(f"B ({bits} bits)", (-9.5, -top - 1.5), bits)
+        psel = c.add_input("SEL", (-9.5, -top - 3.0))
+        out = c.add_output(f"OUT ({bits} bits)", (7.0, 0.0), bits)
+        sa = c.add(split, (-5.5, top + 1.5))
+        sb = c.add(split, (-5.5, -top - 1.5))
+        mg = c.add(merge, (4.0, 0.0))
+        c.wire(pa, sa.i(0)); c.wire(pb, sb.i(0))
+        for i in range(bits):
+            y = round(top - i * step, 4)
+            m = c.add("MUX-2", (-0.5, y))
+            c.wire(sa.o(i), m.i(0))
+            c.wire(sb.o(i), m.i(1))
+            c.wire(psel, m.i(2))
+            c.wire(m.o(), mg.i(i))
+        c.wire(mg.o(), out)
+        c.build()
+
+
+# ==========================================================================
+# 3e. Decodificadores
+# ==========================================================================
+def build_decoders():
+    # DEC-2 : 2 entradas -> 4 saidas (one-hot)
+    c = Chip("DEC-2", COL["xnor"], size=(1.2, 0.75), name_location=1)
+    s1 = c.add_input("S1", (-8.5, 2.0))
+    s0 = c.add_input("S0", (-8.5, -2.0))
+    outs = [c.add_output(f"Y{k}", (7.0, 3.0 - k * 2.0)) for k in range(4)]
+    n1 = c.add("NOT", (-5.5, 4.0))
+    n0 = c.add("NOT", (-5.5, -4.5))
+    c.wire(s1, n1.i(0))
+    c.wire(s0, n0.i(0))
+    # Y0=~S1~S0  Y1=~S1 S0  Y2=S1 ~S0  Y3=S1 S0
+    src = [(n1.o(), n0.o()), (n1.o(), s0), (s1, n0.o()), (s1, s0)]
+    for k, (u, v) in enumerate(src):
+        g = c.add("AND", (1.5, 3.0 - k * 2.0))
+        c.wire(u, g.i(0)); c.wire(v, g.i(1)); c.wire(g.o(), outs[k])
+    c.build()
+
+    # DEC-3 : 3 entradas -> 8 saidas (one-hot)
+    c = Chip("DEC-3", COL["xnor"], size=(1.3, 1.06), name_location=1)
+    s2 = c.add_input("S2", (-9.0, 3.0))
+    s1 = c.add_input("S1", (-9.0, 0.0))
+    s0 = c.add_input("S0", (-9.0, -3.0))
+    outs = [c.add_output(f"Y{k}", (7.5, 5.0 - k * 1.4)) for k in range(8)]
+    n2 = c.add("NOT", (-6.0, 5.5))
+    n1 = c.add("NOT", (-6.0, -5.5))
+    n0 = c.add("NOT", (-6.0, -7.0))
+    c.wire(s2, n2.i(0)); c.wire(s1, n1.i(0)); c.wire(s0, n0.i(0))
+    for k in range(8):
+        u = s2 if (k >> 2) & 1 else n2.o()
+        v = s1 if (k >> 1) & 1 else n1.o()
+        w = s0 if k & 1 else n0.o()
+        g = c.add("AND-3", (1.5, 5.0 - k * 1.4))
+        c.wire(u, g.i(0)); c.wire(v, g.i(1)); c.wire(w, g.i(2))
+        c.wire(g.o(), outs[k])
+    c.build()
+
+
+# ==========================================================================
+# 3f. Comparadores de igualdade
+# ==========================================================================
+def build_comparators():
+    for bits in (4, 8):
+        split = {4: "4-1BIT", 8: "8-1BIT"}[bits]
+        step = 0.6875
+        top = (bits - 1) * step / 2.0
+        c = Chip(f"EQUALS-{bits}", COL["xnor"],
+                 size=(1.4, round(max(0.625, bits * 0.1325), 4)), name_location=1)
+        pa = c.add_input(f"A ({bits} bits)", (-9.5, top + 1.5), bits)
+        pb = c.add_input(f"B ({bits} bits)", (-9.5, -top - 1.5), bits)
+        out = c.add_output("A = B", (8.0, 0.0))
+        sa = c.add(split, (-6.0, top + 1.5))
+        sb = c.add(split, (-6.0, -top - 1.5))
+        c.wire(pa, sa.i(0)); c.wire(pb, sb.i(0))
+
+        # Um XNOR por bit: 1 quando os dois bits sao iguais.
+        eq = []
+        for i in range(bits):
+            y = round(top - i * step, 4)
+            g = c.add("XNOR", (-2.0, y))
+            c.wire(sa.o(i), g.i(0))
+            c.wire(sb.o(i), g.i(1))
+            eq.append(g.o())
+
+        # Arvore de AND: todos os bits iguais.
+        level, col = eq, 0
+        while len(level) > 1:
+            nxt = []
+            for j in range(0, len(level), 2):
+                g = c.add("AND", (1.5 + col * 2.0, round(top - j * step, 4)))
+                c.wire(level[j], g.i(0))
+                c.wire(level[j + 1], g.i(1))
+                nxt.append(g.o())
+            level, col = nxt, col + 1
+        c.wire(level[0], out)
+        c.build()
+
+
+# ==========================================================================
 # 4. Circuitos da atividade
 # ==========================================================================
 def build_activity():
@@ -613,6 +843,10 @@ def build_project_description():
     one_bit = ["NOT", "AND", "OR", "NOR", "XOR", "XNOR"]
     four_bit = [f"{g}-4" for g in ("NOT", "AND", "NAND", "OR", "NOR", "XOR", "XNOR")]
     eight_bit = [f"{g}-8" for g in ("NOT", "AND", "NAND", "OR", "NOR", "XOR", "XNOR")]
+    gates3 = ["AND-3", "OR-3", "NAND-3", "NOR-3"]
+    arith = ["HALF-ADDER", "FULL-ADDER", "ADDER-4", "ADDER-8"]
+    select = ["MUX-2", "MUX-2-4", "MUX-2-8", "DEC-2", "DEC-3",
+              "EQUALS-4", "EQUALS-8"]
     activity = ["Q1-IDENTIDADES", "Q2-ASSOCIATIVA-OU", "Q2-ASSOCIATIVA-E",
                 "Q3-DISTRIBUTIVA", "Q3-FATORACAO",
                 "Q4-1", "Q4-2", "Q4-3", "Q4-4", "Q4-5",
@@ -644,6 +878,10 @@ def build_project_description():
              "Name": "BASICOS 1 BIT"},
             {"Chips": four_bit, "IsToggledOpen": True, "Name": "BASICOS 4 BITS"},
             {"Chips": eight_bit, "IsToggledOpen": True, "Name": "BASICOS 8 BITS"},
+            {"Chips": gates3, "IsToggledOpen": True, "Name": "3 ENTRADAS"},
+            {"Chips": arith, "IsToggledOpen": True, "Name": "ARITMETICA"},
+            {"Chips": select, "IsToggledOpen": True,
+             "Name": "SELECAO/DECODIFICACAO"},
             {"Chips": activity, "IsToggledOpen": True, "Name": "ATIVIDADE"},
             {"Chips": ["CONST-0", "CONST-1"], "IsToggledOpen": True,
              "Name": "CONSTANTES"},
@@ -663,6 +901,11 @@ def main():
     build_constants()
     build_basic_gates()
     build_banks()
+    build_gates3()
+    build_adders()
+    build_mux()
+    build_decoders()
+    build_comparators()
     build_activity()
 
     chips_dir = os.path.join(dest, "Chips")

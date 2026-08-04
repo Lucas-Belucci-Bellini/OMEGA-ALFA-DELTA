@@ -2,8 +2,8 @@
   "ProjectName": "ALGEBRA-BOOLEANA",
   "DLSVersion_LastSaved": "2.3.0",
   "DLSVersion_EarliestCompatible": "2.0.0",
-  "CreationTime": "2026-08-03T21:41:43.273-03:00",
-  "LastSaveTime": "2026-08-03T21:41:43.273-03:00",
+  "CreationTime": "2026-08-03T21:54:19.831-03:00",
+  "LastSaveTime": "2026-08-03T21:54:19.831-03:00",
   "Prefs_MainPinNamesDisplayMode": 2,
   "Prefs_ChipPinNamesDisplayMode": 1,
   "Prefs_GridDisplayMode": 1,
@@ -35,6 +35,21 @@
     "NOR-8",
     "XOR-8",
     "XNOR-8",
+    "AND-3",
+    "OR-3",
+    "NAND-3",
+    "NOR-3",
+    "HALF-ADDER",
+    "FULL-ADDER",
+    "ADDER-4",
+    "ADDER-8",
+    "MUX-2",
+    "MUX-2-4",
+    "MUX-2-8",
+    "DEC-2",
+    "DEC-3",
+    "EQUALS-4",
+    "EQUALS-8",
     "Q1-IDENTIDADES",
     "Q2-ASSOCIATIVA-OU",
     "Q2-ASSOCIATIVA-E",
@@ -106,6 +121,39 @@
       ],
       "IsToggledOpen": true,
       "Name": "BASICOS 8 BITS"
+    },
+    {
+      "Chips": [
+        "AND-3",
+        "OR-3",
+        "NAND-3",
+        "NOR-3"
+      ],
+      "IsToggledOpen": true,
+      "Name": "3 ENTRADAS"
+    },
+    {
+      "Chips": [
+        "HALF-ADDER",
+        "FULL-ADDER",
+        "ADDER-4",
+        "ADDER-8"
+      ],
+      "IsToggledOpen": true,
+      "Name": "ARITMETICA"
+    },
+    {
+      "Chips": [
+        "MUX-2",
+        "MUX-2-4",
+        "MUX-2-8",
+        "DEC-2",
+        "DEC-3",
+        "EQUALS-4",
+        "EQUALS-8"
+      ],
+      "IsToggledOpen": true,
+      "Name": "SELECAO/DECODIFICACAO"
     },
     {
       "Chips": [
