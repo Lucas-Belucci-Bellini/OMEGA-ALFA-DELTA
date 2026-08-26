@@ -1,6 +1,6 @@
 # OMEGA-ALFA-DELTA
 
-Este repositório reúne projetos educacionais desenvolvidos pelos alunos. Cada pasta é independente e pode ser aberta pelo seu próprio `index.html`, permitindo estudar HTML, CSS e JavaScript por etapas.
+Este repositório reúne projetos educacionais desenvolvidos pelos alunos. Cada pasta é independente e pode ser aberta pelo seu próprio `index.html`, permitindo estudar HTML, CSS e JavaScript por etapas. Consulte o [mapa da estrutura](./docs/estrutura-projetos.md) para entender a diferença entre projetos ativos e diretórios originais.
 
 ## Projetos
 
@@ -21,7 +21,7 @@ Para aprender com o código, comece pelo HTML, identifique as classes usadas no 
 
 A pasta [`cloneYou`](./cloneYou) contém um clone educacional de uma plataforma de vídeos, consolidado a partir das referências dos colegas. O projeto inclui cabeçalho, logo com efeito de crescimento ao passar o mouse, busca, filtros, sidebar recolhível, modo escuro, cards de vídeos, modal de prévia e layout responsivo.
 
-A integração das três fontes originais está registrada em [`cloneYou/docs/integracao-fontes.md`](./cloneYou/docs/integracao-fontes.md). Os comentários sobre o layout CSS, o estado JavaScript e os testes ficam na documentação da pasta.
+A integração das três fontes originais está registrada em [`cloneYou/docs/integracao-fontes.md`](./cloneYou/docs/integracao-fontes.md). Os comentários sobre o layout CSS, o estado JavaScript e os testes ficam na documentação da pasta. O exercício de comentários com `localStorage` possui uma validação automatizada em [`cloneYou/opcionais/interacoes-video/tests/validate-comments.js`](./cloneYou/opcionais/interacoes-video/tests/validate-comments.js).
 
 ## Estrutura recomendada para os alunos
 

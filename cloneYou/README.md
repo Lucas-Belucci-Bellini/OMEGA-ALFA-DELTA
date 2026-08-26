@@ -47,6 +47,16 @@ O aluno pode começar alterando o nome `CloneTube`, as cores em `:root` e os tí
 
 Os comentários dentro dos arquivos explicam a ideia antes do código. Leia primeiro o comentário e só depois as linhas seguintes. Se algum termo ainda parecer novo, use a tabela do roteiro acima e teste uma mudança pequena de cada vez.
 
+### Exercício prático: comentários com localStorage
+
+1. Abra `opcionais/interacoes-video/index.html` e escreva dois comentários.
+2. Atualize a página com `Ctrl+R` e confira se os comentários continuam aparecendo.
+3. Abra as ferramentas do navegador, entre em **Application / Armazenamento local** e encontre a chave `clonetube-interactions`.
+4. Apague essa chave, atualize a página e confirme que a lista voltou a ficar vazia.
+5. Edite `js/script.js` para adicionar um botão `Limpar comentários` e faça essa ação remover apenas os comentários, sem apagar a curtida.
+
+O exercício mostra a diferença entre alterar a tela e salvar dados. A função `renderComments()` atualiza o HTML; `saveState()` transforma o objeto em texto com `JSON.stringify()` e grava no navegador; `loadState()` recupera o texto com `JSON.parse()` quando a página abre novamente. Para conferir automaticamente se o formulário continua conectado ao código, execute o teste descrito no README do módulo.
+
 Também é possível praticar a conversão de unidades: as medidas de layout do arquivo CSS estão em `rem`, mantendo uma base relativa e mais fácil de adaptar. Para testar a responsividade, redimensione a janela do navegador e observe a transformação do menu lateral em navegação inferior no celular.
 
 ## Estrutura da pasta

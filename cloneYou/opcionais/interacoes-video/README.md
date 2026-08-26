@@ -28,4 +28,14 @@ Abra `index.html` no navegador. Clique em `Curtir`, `Não gostei` e `Salvar`, es
 
 Altere o nome do usuário, adicione um contador de compartilhamentos, crie uma segunda área de comentários e inclua um botão para limpar todas as interações. Depois, compare este módulo com `fila-inteligente` para identificar duas formas diferentes de guardar estado no `localStorage`.
 
+## Teste automatizado
+
+Na pasta deste módulo existe o arquivo `tests/validate-comments.js`. No terminal, execute:
+
+```bash
+node tests/validate-comments.js
+```
+
+O teste confere se os IDs do formulário continuam presentes no HTML, se o JavaScript possui os listeners e as chamadas de `localStorage`, e se textos vazios são ignorados. Ele não substitui o teste no navegador; serve como uma conferência rápida depois de editar o código.
+
 > Os dados são locais e servem apenas para estudo. Não existe login ou banco de dados neste componente.
