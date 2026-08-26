@@ -47,8 +47,15 @@ cloneYou/
 ├── docs/
 │   ├── integracao-fontes.md
 │   ├── validacao.md
-│   └── validacao-novos-projetos.md
+│   ├── validacao-novos-projetos.md
+│   └── validacao-opcional.md
 └── README.md
 ```
+
+## Módulo opcional: fila inteligente
+
+A pasta [`opcionais/fila-inteligente`](./opcionais/fila-inteligente) contém uma funcionalidade avançada independente. Ela permite filtrar uma biblioteca de vídeos, adicionar itens a uma fila, remover, reproduzir uma prévia, embaralhar a ordem, marcar vídeos como assistidos e salvar os dados no `localStorage`.
+
+Para usar, abra `opcionais/fila-inteligente/index.html`. Para integrar ao clone principal, copie a estrutura do painel, os estilos necessários e as funções de `opcionais/fila-inteligente/js/script.js`. A pasta foi separada para que o aluno possa experimentar sem modificar a versão principal. O guia completo de integração está em [`opcionais/fila-inteligente/README.md`](./opcionais/fila-inteligente/README.md), e o teste realizado está em [`docs/validacao-opcional.md`](./docs/validacao-opcional.md).
 
 > Este projeto é um protótipo educacional de front-end. Ele não possui login, banco de dados, upload real de vídeos ou integração oficial com a plataforma YouTube.

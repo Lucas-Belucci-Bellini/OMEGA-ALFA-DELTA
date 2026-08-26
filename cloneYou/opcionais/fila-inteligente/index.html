@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Módulo opcional de fila inteligente para o CloneTube.">
+    <title>CloneTube — Fila inteligente</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <a class="brand" href="../../index.html" aria-label="Voltar ao CloneTube">
+            <span class="brand__mark">▶</span>
+            <span><strong>CloneTube</strong><small>Módulo opcional</small></span>
+        </a>
+        <div class="topbar__status"><span></span> fila inteligente</div>
+        <a class="back-link" href="../../index.html">Voltar ao clone ↗</a>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div>
+                <p class="eyebrow">Funcionalidade avançada / 01</p>
+                <h1>Monte sua próxima sessão.</h1>
+                <p class="intro__text">Adicione vídeos à fila, altere a ordem e marque o que já foi assistido. Este módulo funciona sozinho e pode ser integrado ao CloneYou principal.</p>
+            </div>
+            <div class="stats" aria-label="Resumo da fila">
+                <div><strong id="queue-count">0</strong><span>na fila</span></div>
+                <div><strong id="queue-time">00:00</strong><span>tempo total</span></div>
+                <div><strong id="watched-count">0</strong><span>assistidos</span></div>
+            </div>
+        </section>
+
+        <section class="player" aria-labelledby="now-playing-title">
+            <div class="player__screen"><span class="player__play">▶</span><span>player demonstrativo</span></div>
+            <div class="player__info">
+                <p class="eyebrow">Reproduzindo agora</p>
+                <h2 id="now-playing-title">Escolha um vídeo da biblioteca</h2>
+                <p id="now-playing-meta">Sua fila aparecerá aqui.</p>
+                <div class="progress"><span id="progress-bar"></span></div>
+                <button class="button button--accent" id="mark-watched" type="button" disabled>Marcar como assistido</button>
+            </div>
+        </section>
+
+        <div class="workspace">
+            <section class="library" aria-labelledby="library-title">
+                <div class="section-heading">
+                    <div><p class="eyebrow">Biblioteca de demonstração</p><h2 id="library-title">Escolha um vídeo</h2></div>
+                    <label class="search"><span>⌕</span><input id="library-search" type="search" placeholder="Filtrar vídeos" aria-label="Filtrar vídeos"></label>
+                </div>
+                <div class="library-grid" id="library-grid"></div>
+            </section>
+
+            <aside class="queue" aria-labelledby="queue-title">
+                <div class="queue__heading"><div><p class="eyebrow">Sua sessão</p><h2 id="queue-title">Próximos</h2></div><span id="queue-label">0 vídeos</span></div>
+                <div class="queue__actions"><button id="shuffle-queue" type="button">Embaralhar</button><button id="clear-queue" type="button">Limpar</button></div>
+                <div class="queue__list" id="queue-list"></div>
+                <p class="queue__empty" id="queue-empty">Sua fila está vazia. Adicione um vídeo para começar.</p>
+            </aside>
+        </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
