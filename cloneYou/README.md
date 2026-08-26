@@ -46,7 +46,8 @@ cloneYou/
 │   └── script.js
 ├── docs/
 │   ├── integracao-fontes.md
-│   └── validacao.md
+│   ├── validacao.md
+│   └── validacao-novos-projetos.md
 └── README.md
 ```
 

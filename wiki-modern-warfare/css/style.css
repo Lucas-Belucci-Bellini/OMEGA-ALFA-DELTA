@@ -1,0 +1,610 @@
+:root {
+    --ink: #11140f;
+    --ink-soft: #455044;
+    --paper: #e9e7de;
+    --paper-bright: #f8f7f1;
+    --line: #c4c5b9;
+    --olive: #687857;
+    --olive-dark: #283222;
+    --red: #b63a2f;
+    --yellow: #e5bb51;
+    font-size: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Inter, Arial, sans-serif;
+    line-height: 1.55;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+.topbar {
+    align-items: center;
+    background: rgba(233, 231, 222, 0.94);
+    border-bottom: 0.0625rem solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem clamp(1rem, 5vw, 5rem);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.brand {
+    align-items: center;
+    display: flex;
+    gap: 0.8rem;
+}
+
+.brand__mark {
+    align-items: center;
+    background: var(--ink);
+    border-radius: 50%;
+    color: var(--yellow);
+    display: inline-flex;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    height: 2.4rem;
+    justify-content: center;
+    letter-spacing: 0.05rem;
+    width: 2.4rem;
+}
+
+.brand strong,
+.brand small {
+    display: block;
+}
+
+.brand strong {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.03rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.brand small {
+    color: var(--ink-soft);
+    font-size: 0.68rem;
+    letter-spacing: 0.06rem;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+}
+
+.topbar__nav {
+    display: flex;
+    gap: 1.4rem;
+}
+
+.topbar__nav a {
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.topbar__nav a:hover {
+    color: var(--red);
+}
+
+.menu-button {
+    background: transparent;
+    display: none;
+    font-size: 1.3rem;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 100rem;
+    padding: 0 clamp(1rem, 5vw, 5rem);
+}
+
+.hero {
+    align-items: center;
+    border-bottom: 0.0625rem solid var(--line);
+    display: grid;
+    gap: clamp(2rem, 7vw, 7rem);
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr);
+    min-height: 38rem;
+    padding: 5rem 0;
+}
+
+.hero__content {
+    max-width: 38rem;
+}
+
+.eyebrow {
+    color: var(--red);
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+}
+
+.hero h1,
+.section h2,
+.intro-grid h2,
+.meme-banner h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03rem;
+    line-height: 0.95;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-size: clamp(3.3rem, 7vw, 7rem);
+    max-width: 42rem;
+}
+
+.hero__intro {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    margin: 1.5rem 0 2rem;
+    max-width: 35rem;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.button {
+    align-items: center;
+    border: 0.0625rem solid var(--ink);
+    display: inline-flex;
+    font-size: 0.78rem;
+    font-weight: 700;
+    gap: 0.8rem;
+    justify-content: center;
+    letter-spacing: 0.05rem;
+    padding: 0.85rem 1.2rem;
+    text-transform: uppercase;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-0.15rem);
+}
+
+.button--primary {
+    background: var(--ink);
+    color: var(--paper-bright);
+}
+
+.button--primary:hover {
+    background: var(--red);
+    border-color: var(--red);
+}
+
+.button--ghost {
+    background: transparent;
+}
+
+.button--ghost:hover {
+    background: var(--paper-bright);
+}
+
+.hero__visual {
+    min-height: 28rem;
+    position: relative;
+}
+
+.hero__visual::before {
+    background: var(--olive-dark);
+    content: "";
+    inset: 1rem -1rem -1rem 1rem;
+    position: absolute;
+    z-index: -1;
+}
+
+.hero__visual img {
+    display: block;
+    filter: saturate(0.72) contrast(1.08);
+    height: 28rem;
+    object-fit: cover;
+    width: 100%;
+}
+
+.hero__stamp {
+    align-items: center;
+    background: var(--yellow);
+    bottom: 2rem;
+    display: flex;
+    gap: 0.7rem;
+    padding: 0.5rem 0.8rem;
+    position: absolute;
+    right: -1rem;
+    transform: rotate(-5deg);
+}
+
+.hero__stamp span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+}
+
+.hero__stamp strong {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.6rem;
+}
+
+.hero__caption {
+    background: var(--ink);
+    bottom: -1.8rem;
+    color: var(--paper-bright);
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 0.9rem;
+    left: -1rem;
+    letter-spacing: 0.04rem;
+    padding: 0.65rem 0.9rem;
+    position: absolute;
+}
+
+.intro-grid {
+    border-bottom: 0.0625rem solid var(--line);
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    padding: 5rem 0;
+}
+
+.intro-grid h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    max-width: 28rem;
+}
+
+.intro-grid > p {
+    color: var(--ink-soft);
+    max-width: 32rem;
+}
+
+.section {
+    border-bottom: 0.0625rem solid var(--line);
+    padding: 5rem 0;
+}
+
+.section__heading {
+    align-items: end;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.section__heading--stacked {
+    align-items: start;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.section__heading--stacked > p:last-child {
+    color: var(--ink-soft);
+    margin-top: 1rem;
+    max-width: 31rem;
+}
+
+.section h2 {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.filter {
+    background: transparent;
+    border: 0.0625rem solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04rem;
+    padding: 0.55rem 0.8rem;
+    text-transform: uppercase;
+}
+
+.filter:hover,
+.filter.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper-bright);
+}
+
+.timeline {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.timeline-card {
+    background: var(--paper-bright);
+    border-top: 0.25rem solid var(--olive);
+    min-height: 22rem;
+    padding: 1.4rem;
+    position: relative;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.timeline-card:hover {
+    box-shadow: 0.5rem 0.5rem 0 var(--yellow);
+    transform: translateY(-0.25rem);
+}
+
+.timeline-card--accent {
+    background: var(--olive-dark);
+    border-top-color: var(--red);
+    color: var(--paper-bright);
+}
+
+.timeline-card__number {
+    color: var(--yellow);
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.timeline-card__year {
+    color: var(--red);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06rem;
+    margin: 1.5rem 0 0.7rem;
+    text-transform: uppercase;
+}
+
+.timeline-card--accent .timeline-card__year {
+    color: var(--yellow);
+}
+
+.timeline-card h3 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.7rem;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.timeline-card p:not(.timeline-card__year) {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+}
+
+.timeline-card--accent p:not(.timeline-card__year) {
+    color: #d5d8ca;
+}
+
+.tag {
+    bottom: 1.3rem;
+    color: var(--olive);
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+.timeline-card--accent .tag {
+    color: var(--yellow);
+}
+
+.section--split {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 0.7fr 1.3fr;
+}
+
+.character-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.character-card {
+    background: var(--ink);
+    color: var(--paper-bright);
+    min-height: 16rem;
+    padding: 1.3rem;
+    position: relative;
+}
+
+.character-card--light {
+    background: var(--olive);
+}
+
+.character-card--red {
+    background: var(--red);
+}
+
+.character-card__code {
+    color: var(--yellow);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+}
+
+.character-card h3 {
+    bottom: 3.5rem;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    left: 1.3rem;
+    line-height: 0.95;
+    max-width: 10rem;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+.character-card p {
+    bottom: 1.3rem;
+    color: #d5d8ca;
+    font-size: 0.78rem;
+    left: 1.3rem;
+    max-width: 12rem;
+    position: absolute;
+}
+
+.character-card__line {
+    background: var(--yellow);
+    bottom: 1.3rem;
+    height: 0.15rem;
+    position: absolute;
+    right: 1.3rem;
+    width: 2.5rem;
+}
+
+.meme-banner {
+    align-items: center;
+    background: var(--yellow);
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    margin: 5rem 0;
+    padding: clamp(1.5rem, 5vw, 3rem);
+}
+
+.meme-banner h2 {
+    font-size: clamp(2rem, 4vw, 4rem);
+    max-width: 32rem;
+}
+
+.meme-banner p:last-child {
+    color: #4c411e;
+    margin-top: 0.7rem;
+    max-width: 31rem;
+}
+
+.footer {
+    align-items: center;
+    border-top: 0.0625rem solid var(--line);
+    color: var(--ink-soft);
+    display: flex;
+    font-size: 0.75rem;
+    justify-content: space-between;
+    padding: 1.5rem clamp(1rem, 5vw, 5rem);
+}
+
+.footer a:hover {
+    color: var(--red);
+}
+
+@media (max-width: 60rem) {
+    .hero {
+        gap: 3rem;
+        grid-template-columns: 1fr 0.8fr;
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 7vw, 5rem);
+    }
+
+    .timeline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .section--split {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 42rem) {
+    .topbar {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    .topbar__nav {
+        display: none;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 0.7rem;
+        padding: 0.5rem 0;
+    }
+
+    .topbar.menu-open .topbar__nav {
+        display: flex;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .hero,
+    .intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 3rem 0 5rem;
+    }
+
+    .hero__visual,
+    .hero__visual img {
+        min-height: 20rem;
+        height: 20rem;
+    }
+
+    .hero__caption {
+        bottom: -1.3rem;
+    }
+
+    .intro-grid,
+    .section {
+        padding: 3.5rem 0;
+    }
+
+    .section__heading,
+    .meme-banner,
+    .footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .section__heading {
+        gap: 1.2rem;
+    }
+
+    .timeline,
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-card {
+        min-height: 18rem;
+    }
+
+    .meme-banner {
+        gap: 1.5rem;
+        margin: 3.5rem 0;
+    }
+}
+
+/* GUIA: a hero usa Grid para dividir texto e imagem; a timeline usa quatro
+   colunas e os breakpoints reduzem para duas e depois uma. As variáveis no
+   :root permitem trocar toda a paleta sem procurar cor por cor. */

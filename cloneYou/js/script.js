@@ -472,3 +472,12 @@ const preferredTheme = readSavedTheme() || (window.matchMedia("(prefers-color-sc
 applyTheme(preferredTheme);
 renderVideos();
 updateActiveControls();
+
+/*
+ * GUIA PARA OS ALUNOS
+ *
+ * state guarda a busca, o filtro e a seção atual. renderVideos() lê esse estado
+ * e redesenha somente a área de cards. toggleSidebar() alterna classes no body:
+ * sidebar-collapsed no desktop e sidebar-open no mobile. applyTheme() altera o
+ * atributo data-theme do html e salva a escolha no localStorage.
+ */

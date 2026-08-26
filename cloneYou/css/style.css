@@ -1180,3 +1180,16 @@ html[data-theme="dark"] .video-card__menu:hover {
         z-index: 30;
     }
 }
+
+/*
+ * GUIA PARA OS ALUNOS
+ *
+ * 1. As variáveis em :root centralizam cores, bordas e sombras. O seletor
+ *    html[data-theme="dark"] troca esses valores sem duplicar todo o layout.
+ * 2. .app-layout mantém a página com altura mínima de viewport. A .sidebar é
+ *    fixed, enquanto .main-content usa margin-left para reservar seu espaço.
+ * 3. .videos-grid usa CSS Grid com auto-fill e minmax(): os cards criam novas
+ *    colunas automaticamente quando existe espaço e diminuem em telas menores.
+ * 4. As media queries reduzem a sidebar e transformam-na em drawer no celular.
+ *    A classe body.sidebar-collapsed é adicionada pelo JavaScript no desktop.
+ */

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wiki didática sobre a história de Call of Duty: Modern Warfare.">
+    <title>Modern Warfare Wiki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <a class="brand" href="#top" aria-label="Modern Warfare Wiki início">
+            <span class="brand__mark">MW</span>
+            <span>
+                <strong>Modern Warfare</strong>
+                <small>Arquivo de campanha</small>
+            </span>
+        </a>
+        <nav class="topbar__nav" aria-label="Navegação principal">
+            <a href="#timeline">Linha do tempo</a>
+            <a href="#personagens">Personagens</a>
+            <a href="#meme">Meme</a>
+        </nav>
+        <button class="menu-button" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="hero__content">
+                <p class="eyebrow">DOSSIÊ 01 · TASK FORCE 141</p>
+                <h1>Uma história de guerra, escolhas e legado.</h1>
+                <p class="hero__intro">Do primeiro conflito global de Price ao retorno de Ghost, relembre como a saga Modern Warfare construiu um dos universos mais marcantes dos jogos de tiro.</p>
+                <div class="hero__actions">
+                    <a class="button button--primary" href="#timeline">Explorar a história <span>↓</span></a>
+                    <a class="button button--ghost" href="#personagens">Conhecer a equipe</a>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <img src="assets/ghost-price.jpg" alt="Retrato de um operador de Modern Warfare">
+                <div class="hero__stamp"><span>CLASSIFIED</span><strong>141</strong></div>
+                <p class="hero__caption">“The enemy has changed. The mission hasn't.”</p>
+            </div>
+        </section>
+
+        <section class="intro-grid">
+            <div>
+                <p class="eyebrow">Sobre este projeto</p>
+                <h2>Uma wiki criada para estudar organização de conteúdo.</h2>
+            </div>
+            <p>Esta página transforma uma ideia inicial em um mini arquivo visual. A linha do tempo usa dados no HTML, enquanto os filtros são controlados pelo JavaScript para demonstrar como uma interface pode responder ao visitante.</p>
+        </section>
+
+        <section class="section" id="timeline">
+            <div class="section__heading">
+                <div>
+                    <p class="eyebrow">Campanhas principais</p>
+                    <h2>Do MW1 ao MW4</h2>
+                </div>
+                <div class="filters" role="group" aria-label="Filtrar linha do tempo">
+                    <button class="filter is-active" type="button" data-filter="all">Tudo</button>
+                    <button class="filter" type="button" data-filter="campanha">Campanhas</button>
+                    <button class="filter" type="button" data-filter="personagens">Personagens</button>
+                </div>
+            </div>
+
+            <div class="timeline" id="timeline-list">
+                <article class="timeline-card" data-type="campanha">
+                    <div class="timeline-card__number">01</div>
+                    <p class="timeline-card__year">2007 · MW1</p>
+                    <h3>O começo do conflito moderno</h3>
+                    <p>A ameaça de Zakhaev coloca SAS e Marines em uma operação global. Price e Soap entram em uma história marcada por sacrifício e lealdade.</p>
+                    <span class="tag">Origem</span>
+                </article>
+                <article class="timeline-card" data-type="campanha">
+                    <div class="timeline-card__number">02</div>
+                    <p class="timeline-card__year">2009 · MW2</p>
+                    <h3>A guerra chega a todos</h3>
+                    <p>Com Makarov em ascensão, a Task Force 141 enfrenta traições e missões que mudam o equilíbrio do mundo para sempre.</p>
+                    <span class="tag">Ruptura</span>
+                </article>
+                <article class="timeline-card" data-type="campanha">
+                    <div class="timeline-card__number">03</div>
+                    <p class="timeline-card__year">2011 · MW3</p>
+                    <h3>O último ato da trilogia original</h3>
+                    <p>Price, Soap e Yuri perseguem Makarov em uma corrida contra o tempo. A campanha fecha um ciclo com consequências pessoais.</p>
+                    <span class="tag">Acerto de contas</span>
+                </article>
+                <article class="timeline-card timeline-card--accent" data-type="personagens">
+                    <div class="timeline-card__number">04</div>
+                    <p class="timeline-card__year">2019–2023 · MW4</p>
+                    <h3>Um novo universo, a mesma missão</h3>
+                    <p>A nova linha do tempo apresenta uma Task Force 141 renovada, com Ghost, Gaz, Alejandro e Price enfrentando ameaças híbridas.</p>
+                    <span class="tag">Recomeço</span>
+                </article>
+            </div>
+        </section>
+
+        <section class="section section--split" id="personagens">
+            <div class="section__heading section__heading--stacked">
+                <p class="eyebrow">Vozes da missão</p>
+                <h2>Quem move a história</h2>
+                <p>Os personagens funcionam como pontos de entrada para a narrativa. Use os cartões abaixo como exercício para adicionar novos perfis.</p>
+            </div>
+            <div class="character-grid">
+                <article class="character-card">
+                    <span class="character-card__code">CAPT. 01</span>
+                    <h3>John Price</h3>
+                    <p>Líder, estrategista e memória viva da unidade.</p>
+                    <span class="character-card__line"></span>
+                </article>
+                <article class="character-card character-card--light">
+                    <span class="character-card__code">LT. 02</span>
+                    <h3>Simon “Ghost” Riley</h3>
+                    <p>Operador encoberto conhecido pelo crânio e pelo silêncio.</p>
+                    <span class="character-card__line"></span>
+                </article>
+                <article class="character-card character-card--red">
+                    <span class="character-card__code">SFC. 03</span>
+                    <h3>John “Soap” MacTavish</h3>
+                    <p>Soldado determinado que atravessa gerações da saga.</p>
+                    <span class="character-card__line"></span>
+                </article>
+            </div>
+        </section>
+
+        <section class="meme-banner" id="meme">
+            <div>
+                <p class="eyebrow">Arquivo secreto</p>
+                <h2>Nem todo link de missão é o que parece.</h2>
+                <p>O link meme do projeto original foi mantido nesta área. Clique por sua conta e risco.</p>
+            </div>
+            <a class="button button--primary" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">Abrir link do YouTube ↗</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>Modern Warfare Wiki · Projeto educacional</span>
+        <a href="#top">Voltar ao topo ↑</a>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Estação PC: guia visual para montar um computador equilibrado.">
+    <title>Estação PC — Monte melhor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <a class="brand" href="#inicio" aria-label="Estação PC início">
+            <span class="brand__dot"></span>
+            <span>ESTAÇÃO<span>PC</span></span>
+        </a>
+        <nav class="nav" id="main-nav" aria-label="Navegação principal">
+            <a href="#montagem">Montagem</a>
+            <a href="#componentes">Componentes</a>
+            <a href="#aprenda">Aprenda</a>
+        </nav>
+        <button class="menu-button" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </header>
+
+    <main id="inicio">
+        <section class="hero">
+            <div class="hero__content">
+                <div class="status"><span></span> guia para começar</div>
+                <h1>Monte o PC que combina com você.</h1>
+                <p>Uma página visual para entender peças, comparar caminhos e transformar a ideia de um computador em um projeto real.</p>
+                <div class="hero__actions">
+                    <a class="button button--accent" href="#montagem">Começar configuração <span>↗</span></a>
+                    <a class="button button--quiet" href="#aprenda">Ver dicas essenciais</a>
+                </div>
+                <div class="hero__stats">
+                    <div><strong>03</strong><span>perfis de uso</span></div>
+                    <div><strong>06</strong><span>peças principais</span></div>
+                    <div><strong>∞</strong><span>possibilidades</span></div>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <img src="assets/pc-setup.jpg" alt="Computador gamer iluminado em uma mesa">
+                <div class="hero__label hero__label--top">BUILD / 001</div>
+                <div class="hero__label hero__label--bottom">MADE TO<br><strong>PERFORM</strong></div>
+                <div class="hero__cross">+</div>
+            </div>
+        </section>
+
+        <section class="section" id="componentes">
+            <div class="section__header">
+                <div>
+                    <p class="eyebrow">O mapa da máquina</p>
+                    <h2>Seis peças.<br><span>Uma experiência.</span></h2>
+                </div>
+                <p class="section__description">A melhor montagem começa entendendo o papel de cada componente, não apenas escolhendo o mais caro.</p>
+            </div>
+            <div class="component-grid">
+                <article class="component-card"><span class="component-card__number">01</span><i>▣</i><h3>Processador</h3><p>O cérebro que executa as tarefas.</p></article>
+                <article class="component-card component-card--accent"><span class="component-card__number">02</span><i>◈</i><h3>Placa de vídeo</h3><p>Responsável pelos gráficos e jogos.</p></article>
+                <article class="component-card"><span class="component-card__number">03</span><i>▤</i><h3>Memória RAM</h3><p>Agilidade para trabalhar com várias coisas.</p></article>
+                <article class="component-card"><span class="component-card__number">04</span><i>▥</i><h3>Armazenamento</h3><p>Onde seus arquivos e sistema vivem.</p></article>
+                <article class="component-card"><span class="component-card__number">05</span><i>△</i><h3>Fonte</h3><p>Energia estável para todo o conjunto.</p></article>
+                <article class="component-card"><span class="component-card__number">06</span><i>□</i><h3>Gabinete</h3><p>Proteção, espaço e circulação de ar.</p></article>
+            </div>
+        </section>
+
+        <section class="builder section" id="montagem">
+            <div class="section__header">
+                <div>
+                    <p class="eyebrow">Escolha um ponto de partida</p>
+                    <h2>Três jeitos<br><span>de montar.</span></h2>
+                </div>
+                <p class="section__description">Selecione um perfil para visualizar uma sugestão de equilíbrio entre desempenho e propósito.</p>
+            </div>
+            <div class="build-tabs" role="tablist" aria-label="Perfis de montagem">
+                <button class="build-tab is-active" type="button" role="tab" aria-selected="true" data-build="essencial">Essencial <small>estudo</small></button>
+                <button class="build-tab" type="button" role="tab" aria-selected="false" data-build="criador">Criador <small>trabalho</small></button>
+                <button class="build-tab" type="button" role="tab" aria-selected="false" data-build="jogador">Jogador <small>performance</small></button>
+            </div>
+            <div class="build-panel" id="build-panel">
+                <div class="build-panel__intro">
+                    <span class="build-panel__code">PROFILE / ESSENCIAL</span>
+                    <h3>Para aprender, pesquisar e criar sem complicação.</h3>
+                    <p>Um ponto de partida equilibrado para tarefas do dia a dia e projetos escolares.</p>
+                    <button class="button button--dark" type="button" data-toast="Perfil salvo! Agora você pode pesquisar cada componente.">Salvar perfil <span>＋</span></button>
+                </div>
+                <div class="parts-list" id="parts-list"></div>
+                <div class="build-panel__image"><img src="assets/pc-build.jpg" alt="Interior de um computador com iluminação azul"></div>
+            </div>
+        </section>
+
+        <section class="learn section" id="aprenda">
+            <div class="learn__heading">
+                <p class="eyebrow">Notas rápidas</p>
+                <h2>Antes de<br><span>comprar.</span></h2>
+            </div>
+            <div class="tips">
+                <details open><summary>Compatibilidade vem primeiro <span>＋</span></summary><p>Processador, placa-mãe e memória precisam conversar entre si. Verifique o soquete e a geração antes de comparar preços.</p></details>
+                <details><summary>Fonte não é lugar para economizar <span>＋</span></summary><p>Uma fonte de qualidade protege o restante do computador e ajuda a manter o sistema estável.</p></details>
+                <details><summary>Deixe espaço para crescer <span>＋</span></summary><p>Uma boa montagem também considera upgrades futuros, como mais armazenamento ou memória.</p></details>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div><p class="eyebrow">Projeto educacional</p><h2>Melhorar é<br>testar.</h2></div>
+            <p>Use este site como laboratório. Troque os textos, adicione peças, crie seu próprio perfil e aprenda construindo.</p>
+            <a class="button button--accent" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Ver conteúdo no YouTube ↗</a>
+        </section>
+    </main>
+
+    <footer class="footer"><span>ESTAÇÃOPC · Guia visual de montagem</span><a href="#inicio">Voltar ao início ↑</a></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
