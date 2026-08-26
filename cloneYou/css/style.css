@@ -994,3 +994,189 @@ a {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* === Recursos didáticos: tema escuro e sidebar expansível === */
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0f0f0f;
+    --surface: #181818;
+    --surface-muted: #272727;
+    --surface-hover: #303030;
+    --text: #f1f1f1;
+    --text-soft: #aaaaaa;
+    --border: #3f3f3f;
+    --accent: #ff3355;
+    --accent-dark: #ff6b82;
+    --shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] body {
+    background: var(--bg);
+}
+
+html[data-theme="dark"] .topbar,
+html[data-theme="dark"] .category-row {
+    background: rgba(15, 15, 15, 0.96);
+}
+
+html[data-theme="dark"] .searchbar__input {
+    background: #121212;
+    border-color: #4d4d4d;
+    color: var(--text);
+}
+
+html[data-theme="dark"] .searchbar__submit {
+    background: #272727;
+    border-color: #4d4d4d;
+}
+
+html[data-theme="dark"] .voice-button {
+    background: #272727;
+}
+
+html[data-theme="dark"] .voice-button:hover,
+html[data-theme="dark"] .searchbar__submit:hover,
+html[data-theme="dark"] .chip:hover {
+    background: #3a3a3a;
+}
+
+html[data-theme="dark"] .sidebar__item i,
+html[data-theme="dark"] .video-card__channel i {
+    color: #dddddd;
+}
+
+html[data-theme="dark"] .sidebar__footer a,
+html[data-theme="dark"] .sidebar__footer p {
+    color: #aaaaaa;
+}
+
+html[data-theme="dark"] .chip.is-active {
+    background: #f1f1f1;
+    color: #0f0f0f;
+}
+
+html[data-theme="dark"] .notification-button__badge {
+    border-color: var(--bg);
+}
+
+.theme-button {
+    border-radius: 1.25rem;
+    gap: 0.45rem;
+    padding: 0 0.8rem;
+    width: auto;
+}
+
+.theme-button__label {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.theme-button.is-dark i {
+    color: #f8c94a;
+}
+
+/* A classe collapsed deixa a barra compacta no desktop sem remover sua navegação. */
+@media (min-width: 75.0625rem) {
+    body.sidebar-collapsed .sidebar {
+        padding-left: 0.4rem;
+        padding-right: 0.4rem;
+        width: 5.25rem;
+    }
+
+    body.sidebar-collapsed .sidebar__item {
+        flex-direction: column;
+        gap: 0.4rem;
+        justify-content: center;
+        min-height: 4.4rem;
+        padding: 0.55rem 0.2rem;
+    }
+
+    body.sidebar-collapsed .sidebar__item span,
+    body.sidebar-collapsed .sidebar__title,
+    body.sidebar-collapsed .sidebar__footer,
+    body.sidebar-collapsed .sidebar__divider {
+        display: none;
+    }
+
+    body.sidebar-collapsed .sidebar__item i {
+        font-size: 1.25rem;
+    }
+
+    body.sidebar-collapsed .main-content {
+        margin-left: 5.25rem;
+    }
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 48rem) {
+    .theme-button {
+        padding: 0;
+        width: 2.5rem;
+    }
+
+    .theme-button__label {
+        display: none;
+    }
+
+    body.sidebar-open .sidebar {
+        background: var(--surface);
+        box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.25);
+        display: flex;
+        left: 0;
+        padding: 1rem 0.75rem;
+        top: 7.5rem;
+        width: 15.5rem;
+        z-index: 35;
+    }
+
+    body.sidebar-open .sidebar__item {
+        flex-direction: row;
+        gap: 1.25rem;
+        justify-content: flex-start;
+        min-height: 2.75rem;
+        padding: 0.65rem 1rem;
+    }
+
+    body.sidebar-open .sidebar__item span,
+    body.sidebar-open .sidebar__title,
+    body.sidebar-open .sidebar__divider {
+        display: block;
+    }
+
+    body.sidebar-open .sidebar__footer {
+        display: flex;
+    }
+}
+
+
+html[data-theme="dark"] .topbar.is-scrolled {
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .sidebar__item:hover,
+html[data-theme="dark"] .sidebar__item.is-active {
+    background: #303030;
+}
+
+html[data-theme="dark"] .video-card__menu {
+    color: #cfcfcf;
+}
+
+html[data-theme="dark"] .video-card__menu:hover {
+    background: #303030;
+    color: white;
+}
+
+@media (max-width: 48rem) {
+    body.sidebar-open::after {
+        background: rgba(0, 0, 0, 0.45);
+        content: "";
+        inset: 7.5rem 0 4.25rem;
+        position: fixed;
+        z-index: 30;
+    }
+}

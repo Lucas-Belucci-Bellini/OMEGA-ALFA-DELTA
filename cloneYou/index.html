@@ -10,13 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <header class="topbar">
         <div class="topbar__left">
-            <button class="icon-button menu-button" id="menu-toggle" type="button" aria-label="Abrir menu">
+            <button class="icon-button menu-button" id="menu-toggle" type="button" aria-label="Recolher menu" aria-expanded="true">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
@@ -46,6 +46,10 @@
             <button class="icon-button notification-button" type="button" data-toast="Você não tem novas notificações.">
                 <i class="fa-regular fa-bell"></i>
                 <span class="notification-button__badge">3</span>
+            </button>
+            <button class="icon-button theme-button" id="theme-toggle" type="button" aria-label="Ativar modo escuro" aria-pressed="false">
+                <i class="fa-solid fa-moon"></i>
+                <span class="theme-button__label">Tema</span>
             </button>
             <button class="avatar avatar--header" type="button" data-toast="Perfil de Victor Almeida">
                 VA
@@ -217,7 +221,7 @@
         </section>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

@@ -192,6 +192,8 @@ const elements = {
     modalChannel: document.querySelector("#modal-channel"),
     clearSearch: document.querySelector("#clear-search"),
     voiceButton: document.querySelector("#voice-button"),
+    themeToggle: document.querySelector("#theme-toggle"),
+    themeMeta: document.querySelector('meta[name="theme-color"]'),
     topbar: document.querySelector(".topbar")
 };
 
@@ -324,9 +326,53 @@ function clearSearch() {
 }
 
 function toggleSidebar() {
-    document.body.classList.toggle("sidebar-open");
-    const isOpen = document.body.classList.contains("sidebar-open");
-    elements.menuToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+    const isMobile = window.matchMedia("(max-width: 48rem)").matches;
+
+    if (isMobile) {
+        document.body.classList.toggle("sidebar-open");
+        const isOpen = document.body.classList.contains("sidebar-open");
+        elements.menuToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+        elements.menuToggle.setAttribute("aria-expanded", String(isOpen));
+        return;
+    }
+
+    document.body.classList.toggle("sidebar-collapsed");
+    const isCollapsed = document.body.classList.contains("sidebar-collapsed");
+    elements.menuToggle.setAttribute("aria-label", isCollapsed ? "Expandir menu" : "Recolher menu");
+    elements.menuToggle.setAttribute("aria-expanded", String(!isCollapsed));
+}
+
+function readSavedTheme() {
+    try {
+        return localStorage.getItem("clonetube-theme");
+    } catch (error) {
+        return null;
+    }
+}
+
+function applyTheme(theme) {
+    const isDark = theme === "dark";
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+
+    if (elements.themeToggle) {
+        elements.themeToggle.classList.toggle("is-dark", isDark);
+        elements.themeToggle.setAttribute("aria-pressed", String(isDark));
+        elements.themeToggle.setAttribute("aria-label", isDark ? "Ativar modo claro" : "Ativar modo escuro");
+        elements.themeToggle.querySelector("i").className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    }
+
+    if (elements.themeMeta) elements.themeMeta.content = isDark ? "#0f0f0f" : "#ffffff";
+
+    try {
+        localStorage.setItem("clonetube-theme", isDark ? "dark" : "light");
+    } catch (error) {
+        // O modo continua funcionando mesmo quando o navegador bloqueia o armazenamento local.
+    }
+}
+
+function toggleTheme() {
+    const isDark = document.documentElement.dataset.theme === "dark";
+    applyTheme(isDark ? "light" : "dark");
 }
 
 function startVoiceSearch() {
@@ -364,6 +410,7 @@ elements.searchForm.addEventListener("submit", submitSearch);
 elements.clearSearch.addEventListener("click", clearSearch);
 elements.menuToggle.addEventListener("click", toggleSidebar);
 elements.voiceButton.addEventListener("click", startVoiceSearch);
+if (elements.themeToggle) elements.themeToggle.addEventListener("click", toggleTheme);
 
 elements.categoryChips.addEventListener("click", (event) => {
     const chip = event.target.closest(".chip");
@@ -394,6 +441,16 @@ document.addEventListener("click", (event) => {
     }
 
     if (event.target.closest("[data-close-modal]")) closeModal();
+
+    if (
+        document.body.classList.contains("sidebar-open") &&
+        window.matchMedia("(max-width: 48rem)").matches &&
+        !event.target.closest("#sidebar, #menu-toggle")
+    ) {
+        document.body.classList.remove("sidebar-open");
+        elements.menuToggle.setAttribute("aria-label", "Abrir menu");
+        elements.menuToggle.setAttribute("aria-expanded", "false");
+    }
 });
 
 document.addEventListener("keydown", (event) => {
@@ -411,5 +468,7 @@ window.addEventListener("scroll", () => {
     elements.topbar.classList.toggle("is-scrolled", window.scrollY > 8);
 }, { passive: true });
 
+const preferredTheme = readSavedTheme() || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+applyTheme(preferredTheme);
 renderVideos();
 updateActiveControls();
