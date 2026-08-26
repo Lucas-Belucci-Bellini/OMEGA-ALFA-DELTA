@@ -170,6 +170,8 @@ const videoCatalog = [
     }
 ];
 
+// Estado da tela: o JavaScript guarda aqui o que o aluno vê na busca e nos filtros.
+// Quando um valor muda, renderVideos() desenha novamente apenas os cards.
 const state = {
     query: "",
     filter: "Todos",
@@ -258,6 +260,7 @@ function createVideoCard(video) {
     `;
 }
 
+// Filtra o catálogo e atualiza o conteúdo que aparece no HTML.
 function renderVideos() {
     const videos = getVisibleVideos();
     const hasSearch = Boolean(state.query.trim());
@@ -325,6 +328,8 @@ function clearSearch() {
     renderVideos();
 }
 
+// No desktop, o menu fica compacto; no mobile, ele abre como um drawer.
+// matchMedia() permite escolher o comportamento de acordo com a largura da tela.
 function toggleSidebar() {
     const isMobile = window.matchMedia("(max-width: 48rem)").matches;
 
@@ -350,6 +355,8 @@ function readSavedTheme() {
     }
 }
 
+// Troca o tema alterando um atributo no elemento <html>.
+// O CSS usa html[data-theme="dark"] para aplicar somente as cores escuras.
 function applyTheme(theme) {
     const isDark = theme === "dark";
     document.documentElement.dataset.theme = isDark ? "dark" : "light";

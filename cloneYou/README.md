@@ -11,6 +11,18 @@ Este projeto é um clone visual de uma plataforma de vídeos, criado com **HTML,
 
 Não é necessário instalar bibliotecas ou executar um servidor para visualizar a versão básica. O projeto utiliza alguns recursos externos, como fonte, ícones e imagens dos cards; por isso, a conexão com a internet ajuda a carregar todos os elementos visuais.
 
+## Roteiro para iniciantes
+
+A forma mais simples de estudar é seguir o caminho do navegador. Primeiro, abra `index.html` e identifique os elementos que aparecem na tela. Depois, localize no HTML o mesmo nome de classe usado no `css/style.css`. Por fim, abra `js/script.js` e procure o evento que muda aquele elemento quando o aluno clica, pesquisa ou escolhe um filtro.
+
+| Conceito | Onde aparece | O que significa |
+| --- | --- | --- |
+| `class` | HTML e CSS | Nome usado para conectar um elemento às regras visuais. |
+| `data-*` | HTML e JavaScript | Pequena informação guardada no elemento, como o filtro de uma categoria. |
+| `querySelector` | JavaScript | Encontra um elemento da página para que o código possa usá-lo. |
+| `addEventListener` | JavaScript | Espera uma ação, como clique, envio de formulário ou tecla. |
+| `classList.toggle` | JavaScript | Liga ou desliga uma classe, útil para menu, tema e estados ativos. |
+
 ## Consolidação
 
 A pasta `cloneYou` foi consolidada a partir das ideias de cabeçalho, logo, pesquisa e menu encontradas nos repositórios [YoYoDolls](https://github.com/DuDuzinVideoJogus/YoYoDolls), [yotobe](https://github.com/Lipegc7/yotobe) e [YouTube](https://github.com/Matheus-PFC/YouTube). A estrutura final foi reorganizada para continuar o clone com uma interface completa e responsiva.
@@ -33,6 +45,8 @@ O HTML apresenta uma organização semântica com `header`, `aside`, `main`, `se
 
 O aluno pode começar alterando o nome `CloneTube`, as cores em `:root` e os títulos dos vídeos no início do `js/script.js`. Depois, pode criar uma nova categoria, adicionar cards ao catálogo, implementar um contador de curtidas, melhorar o menu mobile ou substituir o modal por um player real. O botão de menu recolhe e expande a sidebar no desktop e abre um drawer no celular. O botão `Tema` alterna entre os modos claro e escuro e salva a preferência do visitante.
 
+Os comentários dentro dos arquivos explicam a ideia antes do código. Leia primeiro o comentário e só depois as linhas seguintes. Se algum termo ainda parecer novo, use a tabela do roteiro acima e teste uma mudança pequena de cada vez.
+
 Também é possível praticar a conversão de unidades: as medidas de layout do arquivo CSS estão em `rem`, mantendo uma base relativa e mais fácil de adaptar. Para testar a responsividade, redimensione a janela do navegador e observe a transformação do menu lateral em navegação inferior no celular.
 
 ## Estrutura da pasta
@@ -49,6 +63,9 @@ cloneYou/
 │   ├── validacao.md
 │   ├── validacao-novos-projetos.md
 │   └── validacao-opcional.md
+├── opcionais/
+│   ├── fila-inteligente/
+│   └── interacoes-video/
 └── README.md
 ```
 
@@ -57,5 +74,9 @@ cloneYou/
 A pasta [`opcionais/fila-inteligente`](./opcionais/fila-inteligente) contém uma funcionalidade avançada independente. Ela permite filtrar uma biblioteca de vídeos, adicionar itens a uma fila, remover, reproduzir uma prévia, embaralhar a ordem, marcar vídeos como assistidos e salvar os dados no `localStorage`.
 
 Para usar, abra `opcionais/fila-inteligente/index.html`. Para integrar ao clone principal, copie a estrutura do painel, os estilos necessários e as funções de `opcionais/fila-inteligente/js/script.js`. A pasta foi separada para que o aluno possa experimentar sem modificar a versão principal. O guia completo de integração está em [`opcionais/fila-inteligente/README.md`](./opcionais/fila-inteligente/README.md), e o teste realizado está em [`docs/validacao-opcional.md`](./docs/validacao-opcional.md).
+
+## Segundo módulo opcional: interações de vídeo
+
+A pasta [`opcionais/interacoes-video`](./opcionais/interacoes-video) é um exercício menor para iniciantes. Ela mostra curtida, não gostei, salvar, formulário de comentários, remoção de comentários e persistência no `localStorage`. O guia em [`opcionais/interacoes-video/README.md`](./opcionais/interacoes-video/README.md) explica cada etapa com linguagem simples. Recomenda-se estudar este módulo antes da fila inteligente.
 
 > Este projeto é um protótipo educacional de front-end. Ele não possui login, banco de dados, upload real de vídeos ou integração oficial com a plataforma YouTube.
