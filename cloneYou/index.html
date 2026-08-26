@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <title>CloneTube — vídeos para todos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="topbar__left">
+            <button class="icon-button menu-button" id="menu-toggle" type="button" aria-label="Abrir menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <a class="brand" href="#" aria-label="CloneTube início">
+                <span class="brand__mark"><i class="fa-brands fa-youtube"></i></span>
+                <span class="brand__name">CloneTube</span>
+                <span class="brand__country">BR</span>
+            </a>
+        </div>
+
+        <form class="searchbar" id="search-form" role="search">
+            <label class="sr-only" for="search-input">Pesquisar</label>
+            <input id="search-input" class="searchbar__input" type="search" placeholder="Pesquisar" autocomplete="off">
+            <button class="searchbar__submit" type="submit" aria-label="Pesquisar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+
+        <div class="topbar__right">
+            <button class="icon-button voice-button" id="voice-button" type="button" aria-label="Pesquisar por voz">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+            <button class="icon-button action-button" type="button" data-toast="A área de criação está pronta para você.">
+                <i class="fa-solid fa-video"></i>
+                <span class="action-button__label">Criar</span>
+            </button>
+            <button class="icon-button notification-button" type="button" data-toast="Você não tem novas notificações.">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-button__badge">3</span>
+            </button>
+            <button class="avatar avatar--header" type="button" data-toast="Perfil de Victor Almeida">
+                VA
+            </button>
+        </div>
+    </header>
+
+    <div class="app-layout">
+        <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+            <nav class="sidebar__nav">
+                <a class="sidebar__item is-active" href="#" data-section="Início" data-filter="Todos">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Início</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Shorts" data-filter="Shorts">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Shorts</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Inscrições" data-filter="Inscrições">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Inscrições</span>
+                </a>
+
+                <div class="sidebar__divider"></div>
+
+                <p class="sidebar__title">Você</p>
+                <a class="sidebar__item" href="#" data-section="Histórico" data-filter="Histórico">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Histórico</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Playlists" data-filter="Playlists">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Playlists</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Seus vídeos" data-filter="Seus vídeos">
+                    <i class="fa-regular fa-circle-play"></i>
+                    <span>Seus vídeos</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Assistir mais tarde" data-filter="Assistir mais tarde">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Assistir mais tarde</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Vídeos com gostei" data-filter="Vídeos com gostei">
+                    <i class="fa-regular fa-thumbs-up"></i>
+                    <span>Vídeos com gostei</span>
+                </a>
+
+                <div class="sidebar__divider"></div>
+
+                <p class="sidebar__title">Explorar</p>
+                <a class="sidebar__item" href="#" data-section="Em alta" data-filter="Em alta">
+                    <i class="fa-solid fa-fire"></i>
+                    <span>Em alta</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Música" data-filter="Música">
+                    <i class="fa-solid fa-music"></i>
+                    <span>Música</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Filmes e TV" data-filter="Filmes e TV">
+                    <i class="fa-solid fa-clapperboard"></i>
+                    <span>Filmes e TV</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Ao vivo" data-filter="Ao vivo">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                    <span>Ao vivo</span>
+                </a>
+                <a class="sidebar__item" href="#" data-section="Jogos" data-filter="Jogos">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Jogos</span>
+                </a>
+
+                <div class="sidebar__divider"></div>
+                <a class="sidebar__item" href="#" data-toast="Obrigado por usar o CloneTube.">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Configurações</span>
+                </a>
+                <a class="sidebar__item" href="#" data-toast="Envie sua opinião pelo formulário de feedback.">
+                    <i class="fa-regular fa-flag"></i>
+                    <span>Enviar feedback</span>
+                </a>
+            </nav>
+
+            <footer class="sidebar__footer">
+                <a href="#">Sobre</a>
+                <a href="#">Imprensa</a>
+                <a href="#">Direitos autorais</a>
+                <a href="#">Contato</a>
+                <p>© 2026 CloneTube</p>
+            </footer>
+        </aside>
+
+        <main class="main-content">
+            <section class="category-row" aria-label="Categorias de vídeos">
+                <div class="category-row__scroll" id="category-chips">
+                    <button class="chip is-active" type="button" data-filter="Todos">Tudo</button>
+                    <button class="chip" type="button" data-filter="Música">Música</button>
+                    <button class="chip" type="button" data-filter="Jogos">Jogos</button>
+                    <button class="chip" type="button" data-filter="Tecnologia">Tecnologia</button>
+                    <button class="chip" type="button" data-filter="Ao vivo">Ao vivo</button>
+                    <button class="chip" type="button" data-filter="Mixes">Mixes</button>
+                    <button class="chip" type="button" data-filter="Programação">Programação</button>
+                    <button class="chip" type="button" data-filter="Design">Design</button>
+                    <button class="chip" type="button" data-filter="Viagem">Viagem</button>
+                    <button class="chip" type="button" data-filter="Comédia">Comédia</button>
+                </div>
+            </section>
+
+            <section class="feed" aria-labelledby="section-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-heading__eyebrow">Para você</p>
+                        <h1 id="section-title">Recomendados</h1>
+                    </div>
+                    <span class="results-count" id="results-count"></span>
+                </div>
+
+                <div class="videos-grid" id="videos-grid"></div>
+
+                <div class="empty-state" id="empty-state" hidden>
+                    <i class="fa-solid fa-video-slash"></i>
+                    <h2>Nenhum vídeo encontrado</h2>
+                    <p>Tente buscar outro termo ou escolha uma categoria diferente.</p>
+                    <button class="empty-state__button" id="clear-search" type="button">Limpar busca</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <nav class="mobile-nav" aria-label="Navegação mobile">
+        <a class="mobile-nav__item is-active" href="#" data-section="Início" data-filter="Todos">
+            <i class="fa-solid fa-house"></i>
+            <span>Início</span>
+        </a>
+        <a class="mobile-nav__item" href="#" data-section="Shorts" data-filter="Shorts">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Shorts</span>
+        </a>
+        <a class="mobile-nav__item" href="#" data-toast="A área de inscrições está pronta.">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Inscrições</span>
+        </a>
+        <a class="mobile-nav__item" href="#" data-toast="Sua biblioteca está vazia por enquanto.">
+            <i class="fa-solid fa-photo-film"></i>
+            <span>Biblioteca</span>
+        </a>
+    </nav>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="modal" id="video-modal" hidden>
+        <div class="modal__backdrop" data-close-modal></div>
+        <section class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal__close" type="button" data-close-modal aria-label="Fechar vídeo">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal__screen">
+                <i class="fa-solid fa-play"></i>
+                <span>Prévia do vídeo</span>
+            </div>
+            <div class="modal__body">
+                <p class="modal__eyebrow">Reprodução no CloneTube</p>
+                <h2 id="modal-title">Título do vídeo</h2>
+                <p id="modal-channel">Canal</p>
+                <div class="modal__actions">
+                    <button type="button" data-toast="Vídeo adicionado à sua biblioteca."><i class="fa-regular fa-bookmark"></i> Salvar</button>
+                    <button type="button" data-toast="Link copiado para a área de transferência."><i class="fa-solid fa-share"></i> Compartilhar</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
