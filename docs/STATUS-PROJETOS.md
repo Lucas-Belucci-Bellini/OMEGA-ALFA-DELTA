@@ -11,7 +11,7 @@ auditoria registrada e testes executados. Abrir sem erro não é suficiente.
 | Projeto | Auditoria | Correção | UI | Responsividade | Testes | Finalizado |
 | --- | --- | --- | --- | --- | --- | --- |
 | `cloneYou` | ✅ | ✅ | ✅ | ✅ | ✅ 16 testes | ✅ |
-| `wiki-modern-warfare` | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| `wiki-modern-warfare` | ✅ | ✅ | ✅ | ✅ | ✅ 16 testes | ✅ |
 | `portfolio-talles` | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | `estacao-pc` | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
@@ -36,7 +36,7 @@ projeto abre sozinho e nenhum usa arquivo de outro.
 node --test tests/*.test.js
 ```
 
-Estado atual: **17 verificações, todas passando.** Os quatro projetos ativos e os
+Estado atual: **17 verificações, todas passando** — reconferidas depois de cada ciclo. Os quatro projetos ativos e os
 cinco diretórios originais estão isolados; os quatro ativos não têm nenhuma
 referência local quebrada.
 
@@ -58,6 +58,27 @@ referência local quebrada.
   quatro seletores "repetidos" e concluiu que são o padrão regra-agrupada +
   regra-específica, que está correto.
 
+### wiki-modern-warfare — finalizado
+
+- Auditoria: [`wiki-modern-warfare/docs/auditoria.md`](../wiki-modern-warfare/docs/auditoria.md)
+- **D1 corrigido** — no celular, o menu não fechava ao clicar em um link dele:
+  o visitante escolhia "Linha do tempo", a página rolava, e o menu continuava
+  por cima da seção que ele acabou de pedir para ver.
+- **D2 descartado com medição.** A suspeita era que o cartão filtrado ficava
+  espremido em um quarto da linha. Medindo, os 276px dele são a largura normal
+  do cartão — ele não encolhe, a linha é que não fica cheia. A correção com
+  `auto-fit` foi aplicada, medida e revertida: dava 3 colunas onde havia 2
+  (820px) e 5 onde havia 4 (1920px).
+- **Guarda `[hidden]` acrescentada ao CSS.** O filtro escondia cartões pelo
+  atributo `hidden`, o que funcionava só porque nenhuma regra definia `display`
+  para `.timeline-card`. Sem a guarda, o filtro quebraria em silêncio no dia em
+  que alguém definisse.
+- **2,2 MB removidos**: `assets/ghost-price-team.png` não era usado por ninguém.
+  A pasta caiu de 2,5 MB para 296 KB. O clone não encolhe (o Git guarda o
+  histórico) e o comando para recuperar o arquivo está na auditoria.
+- Testes: 9 estruturais + 7 de interface. Um é regressão, verificado falhando
+  antes da correção.
+
 ## Problemas encontrados em um projeto que pertencem a outro
 
 Nada registrado até aqui. Conforme a regra 19, um problema descoberto durante o
@@ -66,4 +87,4 @@ do dono, nunca no ciclo em andamento.
 
 | Descoberto em | Pertence a | Problema | Situação |
 | --- | --- | --- | --- |
-| `cloneYou` | os 3 outros ativos | `cloneYou/docs/validacao-novos-projetos.md` documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e `estacao-pc` — documentação de três projetos dentro de um quarto | ⬜ cada projeto absorve a sua parte no próprio ciclo; o arquivo compartilhado sai no fim |
+| `cloneYou` | os 3 outros ativos | `cloneYou/docs/validacao-novos-projetos.md` documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e `estacao-pc` — documentação de três projetos dentro de um quarto | 🔄 1 de 3 absorvido (`wiki-modern-warfare`); o arquivo sai quando o último absorver a sua parte |
