@@ -1,0 +1,20 @@
+# Saída de compilação e de ferramentas — tudo aqui é gerado, nunca escrito à mão.
+target/
+*.class
+
+# Dependências instaláveis: cada máquina baixa as suas.
+node_modules/
+
+# JDKs, SDKs e outras ferramentas não são arquivo de projeto.
+# (Este repositório já carregou um JDK inteiro de 20 MB por engano.)
+jdk*/
+*Jdk*/
+*.exe
+*.dll
+
+# Lixo de sistema operacional e de editor.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
