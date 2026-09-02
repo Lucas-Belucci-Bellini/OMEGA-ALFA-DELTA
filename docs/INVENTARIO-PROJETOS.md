@@ -35,7 +35,7 @@ o JDK do Windows versionado dentro de `projeto_analise_algoritmos_corrigido`.
 | **site_pedrocamposcoimbra8-afk_01** | `site_pedrocamposcoimbra8-afk_01/` | Original preservado | 🔴 **Sem estilo** | ✅ Sim | O HTML **não tem nenhuma tag `<link>`**; o arquivo `stlye.css` (16 linhas) existe mas está órfão. A página abre sem CSS |
 | **site_felipebrayan1403-cell_01** | `site_felipebrayan1403-cell_01/` | Original preservado | 🔴 **Sem estilo** | ✅ Sim | `<link href="cdd/style.css">` — o diretório `cdd/` **não existe**. Todas as imagens são hotlink de sites externos (kabum, globo, gstatic) |
 | **site_ajuda_pensamento_01** | `site_ajuda_pensamento_01/` | Original preservado | 🟢 Funcional | ✅ Sim | Nome de arquivo com typo (`sytle.css`), mas o `<link>` aponta para o nome certo — funciona. É o maior dos originais (559 linhas de HTML) |
-| **projeto_analise_algoritmos** | `projeto_analise_algoritmos/` | Java/Maven (trabalho acadêmico) | 🟢 Compilável — tem `src/` completo (11 classes, 1120 linhas) | ✅ Sim | Não é mencionado no README nem em `estrutura-projetos.md`. Sem `.gitignore` para `target/` |
+| **projeto_analise_algoritmos** | `projeto_analise_algoritmos/` | Java/Maven (trabalho acadêmico) | 🔴 **Não compilava** — corrigido depois. Tem `src/` completo (11 classes, 1120 linhas) | ✅ Sim | Duas vírgulas faltando no array de clientes de `Main.java` derrubavam a compilação inteira. Não é mencionado no README nem em `estrutura-projetos.md`. Sem `.gitignore` para `target/` |
 | **projeto_analise_algoritmos_corrigido** | `projeto_analise_algoritmos_corrigido/` | Java/Maven | 🔴 **Não compila — `src/` ausente** | ❌ Não — depende do `src/` do diretório irmão | **Duplicata incompleta.** Tem `README`/`EXTENSAO`/`JUSTIFICATIVAS`/`pom.xml` idênticos ao irmão, javadoc **gerado** (`docs/apidocs/`) e um **JDK 26 do Windows inteiro versionado** (`oracleJdk-26/`, 20 MB, `.exe`/`.dll` sob licença proprietária Oracle) |
 
 ## 3. Dependências entre projetos
@@ -86,6 +86,13 @@ entregue — para que ninguém tente "consertar" o histórico.
 | 6 | Documentação de 3 projetos dentro de um 4º | 🟡 Média | `cloneYou/docs/` |
 | 7 | Dois projetos Java invisíveis na documentação central | 🟡 Média | `README.md`, `docs/estrutura-projetos.md` |
 | 8 | Nenhum projeto tem `tests/`, exceto um módulo opcional do cloneYou | 🟢 Baixa | todos |
+| 9 | **Projeto Java não compila** — duas vírgulas faltando em `Main.java` | 🔴 Alta | `projeto_analise_algoritmos/` |
+
+> **Correção do próprio inventário.** A primeira versão desta tabela dizia que
+> `projeto_analise_algoritmos` era "compilável", porque ele tem o `src/` completo.
+> Isso era suposição, não medição: ao rodar o `javac`, ele falhou com sete erros
+> em cascata. A linha foi corrigida e o achado nº 9 acrescentado. Vale como
+> lembrete de que "parece completo" não é o mesmo que "funciona".
 
 ## 6. O que esta auditoria **não** fez
 
