@@ -51,6 +51,7 @@ Existem, porém, **duas dependências que não são de código**:
 1. **Documentação fora de lugar.** `cloneYou/docs/validacao-novos-projetos.md`
    documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e
    `estacao-pc`. É documentação de três projetos morando dentro de um quarto.
+   *(Desfeito: cada projeto absorveu a sua parte e o arquivo saiu.)*
 2. **`projeto_analise_algoritmos_corrigido` → `projeto_analise_algoritmos`.**
    O primeiro só tem sentido lido junto com o segundo, porque o código-fonte que
    ele documenta está no outro diretório.

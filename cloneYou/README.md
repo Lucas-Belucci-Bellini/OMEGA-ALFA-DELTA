@@ -72,7 +72,6 @@ cloneYou/
 │   ├── auditoria.md
 │   ├── integracao-fontes.md
 │   ├── validacao.md
-│   ├── validacao-novos-projetos.md
 │   └── validacao-opcional.md
 ├── tests/
 │   ├── estrutura.test.js

@@ -56,6 +56,10 @@ Hoje isso é inofensivo, mas passa a importar quando o fechamento devolver o foc
 de um quarto — exatamente o tipo de amarra invisível que a reorganização quer
 desfazer. Cada projeto deve levar a sua própria validação.
 
+> **Resolvido.** Cada um dos três absorveu a sua parte no próprio ciclo, e o
+> arquivo compartilhado foi removido no fim do ciclo do `estacao-pc`, o último
+> deles. O `cloneYou` ficou só com a documentação que é dele.
+
 ### 🟡 D4 — A página depende de internet para ficar completa
 
 Três origens externas: as 12 miniaturas (Unsplash), os ícones (Font Awesome via
