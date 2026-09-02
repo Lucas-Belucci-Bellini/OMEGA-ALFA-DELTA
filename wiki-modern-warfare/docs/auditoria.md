@@ -34,17 +34,34 @@ descobrir sozinho que tem que tocar no ☰ de novo.
 **Medido:** depois de clicar em `.topbar__nav a[href="#timeline"]` com 390px de
 largura, `.topbar__nav` continua visível e `aria-expanded` continua `"true"`.
 
-### 🟡 D2 — Ao filtrar, o cartão que sobra fica espremido em um quarto da linha
+### ⬜ D2 — Investigado e descartado: o cartão filtrado *não* está espremido
 
-**Onde:** `css/style.css`, regra `.timeline`.
+**Suspeita inicial:** a grade é `repeat(4, minmax(0, 1fr))`, quatro colunas fixas.
+Com o filtro "Personagens" sobra um cartão só, ocupando **276px de uma linha de
+1152px**, com três colunas vazias ao lado. Parecia layout quebrado.
 
-**O que acontece:** a grade é `repeat(4, minmax(0, 1fr))` — quatro colunas fixas.
-Quando o filtro esconde três cartões, o que sobra **continua ocupando só a
-primeira coluna**, com três colunas vazias ao lado. O filtro funciona, mas o
-resultado parece quebrado.
+**Medição que derrubou a suspeita:** esses mesmos 276px são a largura **normal**
+do cartão — sem filtro nenhum, o primeiro cartão da linha também mede 276px. O
+cartão não encolheu; a linha é que não fica cheia. Isso é o comportamento comum
+de qualquer grade filtrada.
 
-**Medido:** com o filtro "Personagens" a 1280px, o cartão restante tem **276px de
-uma linha de 1152px**.
+**A correção foi tentada e medida antes de ser rejeitada.** Trocar as colunas
+fixas por `repeat(auto-fit, minmax(16rem, 1fr))` faz o cartão filtrado esticar
+para 1152px — e estraga o resto:
+
+| Largura da tela | Colunas com `repeat(4, …)` (atual) | Colunas com `auto-fit` |
+| --- | --- | --- |
+| 820px | 2 | **3** ✗ |
+| 1280px | 4 | 4 |
+| 1920px | 4 | **5** ✗ — com 4 cartões, sobra uma coluna vazia |
+
+Não existe um único valor de `minmax()` que sirva: para manter 4 colunas numa
+linha de 1152px é preciso `min ≤ 276px`, e para impedir a quinta coluna numa
+linha de 1440px é preciso `min > 275,2px`. A folga é de menos de um pixel — uma
+regra que qualquer mudança futura de espaçamento quebraria.
+
+**Decisão: não mexer.** A grade voltou ao original. Trocar um incômodo estético
+por uma regressão medida em duas larguras não é melhoria.
 
 ### 🟡 D3 — 2,2 MB de imagem que nenhuma página usa
 
@@ -84,6 +101,6 @@ nenhum erro no console — e a causa é muito difícil de achar. Uma regra
 | Defeito | Ação | Fase |
 | --- | --- | --- |
 | D1 | Fechar o menu ao clicar em um link dele | B (funcional) |
-| D2 | Trocar as 4 colunas fixas por `auto-fit`, mantendo as 4 colunas quando há espaço | D (CSS) |
+| D2 | ~~Trocar as colunas por `auto-fit`~~ — investigado, medido e **descartado** | — |
 | D3 | Remover o arquivo não usado e registrar a decisão e como recuperá-lo | H (performance) |
 | D4 | Acrescentar a guarda `[hidden]` ao CSS | D (CSS) |
