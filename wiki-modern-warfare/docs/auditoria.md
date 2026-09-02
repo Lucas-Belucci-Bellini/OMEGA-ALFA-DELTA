@@ -73,6 +73,21 @@ quase toda a pasta `assets/`.
 Além de não ser usado, está no formato errado: PNG é para desenho e captura de
 tela; para fotografia o JPEG dá o mesmo resultado visual com uma fração do peso.
 
+**Decisão: removido da pasta do projeto**, com duas ressalvas ditas por inteiro:
+
+1. **O clone do repositório não fica menor.** O arquivo continua no histórico do
+   Git; apagar do diretório de trabalho limpa o projeto, não o `.git`. Encolher o
+   histórico exigiria reescrevê-lo, o que quebraria todos os clones existentes —
+   preço alto demais para um repositório de estudo.
+2. **Nada se perde.** Para trazer o arquivo de volta:
+
+   ```bash
+   git show c162ffd:wiki-modern-warfare/assets/ghost-price-team.png > wiki-modern-warfare/assets/ghost-price-team.png
+   ```
+
+O ganho real é de clareza: quem abre `assets/` agora vê só a imagem que a página
+usa de verdade, sem precisar adivinhar qual das duas está viva.
+
 ### 🟢 D4 — O filtro depende de um detalhe frágil do CSS
 
 `script.js` esconde cartões com `card.hidden = true`. Isso funciona **porque**
