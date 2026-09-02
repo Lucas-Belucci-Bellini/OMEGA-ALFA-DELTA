@@ -31,8 +31,8 @@ public class Main {
             new Cliente("Renan Santos", 25, 5),
             new Cliente("Kim Kataguiri", 19, 0),
             new Cliente("IGOR", 30, 3),
-            new Cliente("Vladimir Putin", 25, 1)
-            new Cliente("Thanos", 22, 1)
+            new Cliente("Vladimir Putin", 25, 1),
+            new Cliente("Thanos", 22, 1),
             new Cliente("Doutor Destino", 25, 1)
         };
 
