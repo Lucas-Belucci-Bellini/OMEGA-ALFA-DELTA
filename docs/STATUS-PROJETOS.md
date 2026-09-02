@@ -12,7 +12,7 @@ auditoria registrada e testes executados. Abrir sem erro não é suficiente.
 | --- | --- | --- | --- | --- | --- | --- |
 | `cloneYou` | ✅ | ✅ | ✅ | ✅ | ✅ 16 testes | ✅ |
 | `wiki-modern-warfare` | ✅ | ✅ | ✅ | ✅ | ✅ 16 testes | ✅ |
-| `portfolio-talles` | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| `portfolio-talles` | ✅ | ✅ | ✅ | ✅ | ✅ 14 testes | ✅ |
 | `estacao-pc` | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 
 ## Material preservado
@@ -79,6 +79,26 @@ referência local quebrada.
 - Testes: 9 estruturais + 7 de interface. Um é regressão, verificado falhando
   antes da correção.
 
+### portfolio-talles — finalizado
+
+- Auditoria: [`portfolio-talles/docs/auditoria.md`](../portfolio-talles/docs/auditoria.md)
+- **D1 corrigido** — mesmo defeito de menu que o `wiki-modern-warfare` tinha:
+  no celular, ele ficava aberto por cima da seção escolhida. Os dois projetos
+  nasceram da mesma estrutura de menu, então herdaram a mesma falha; cada um foi
+  corrigido no seu próprio ciclo.
+- **D2 corrigido** — os dois botões dos cartões não tinham nome acessível. O
+  conteúdo deles era só a seta `↗`, que um leitor de tela anuncia como símbolo.
+- **D4 corrigido** — o painel decorativo do topo tinha `aria-label` num `<div>`
+  sem `role`, o que a maioria dos leitores ignora. Virou `aria-hidden="true"`,
+  que é o correto para conteúdo puramente decorativo.
+- **`assets/portfolio-reference.png` removido.** Não era usado e, ao abrir a
+  imagem, **não era material do projeto**: é peça de divulgação de um template
+  comercial de terceiros, com foto de pessoa real, sem licença nem crédito em
+  lugar nenhum do repositório. Guardar referência de design é legítimo pelo
+  link; copiar o arquivo para dentro do repositório, não. A pasta `assets/`
+  deixou de existir — toda a arte da página é feita em CSS.
+- Testes: 7 estruturais + 7 de interface. Três são regressão.
+
 ## Problemas encontrados em um projeto que pertencem a outro
 
 Nada registrado até aqui. Conforme a regra 19, um problema descoberto durante o
@@ -87,4 +107,4 @@ do dono, nunca no ciclo em andamento.
 
 | Descoberto em | Pertence a | Problema | Situação |
 | --- | --- | --- | --- |
-| `cloneYou` | os 3 outros ativos | `cloneYou/docs/validacao-novos-projetos.md` documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e `estacao-pc` — documentação de três projetos dentro de um quarto | 🔄 1 de 3 absorvido (`wiki-modern-warfare`); o arquivo sai quando o último absorver a sua parte |
+| `cloneYou` | os 3 outros ativos | `cloneYou/docs/validacao-novos-projetos.md` documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e `estacao-pc` — documentação de três projetos dentro de um quarto | 🔄 2 de 3 absorvidos (`wiki-modern-warfare`, `portfolio-talles`); o arquivo sai quando o último absorver a sua parte |
