@@ -1,0 +1,13 @@
+{
+  "name": "omega-alfa-delta",
+  "private": true,
+  "description": "Projetos educacionais de HTML, CSS e JavaScript. Cada pasta e um projeto independente.",
+  "scripts": {
+    "test": "node --test tests/*.test.js && npm run test:cloneyou && npm run test:wiki && npm run test:portfolio && npm run test:estacao",
+    "test:isolamento": "node --test tests/*.test.js",
+    "test:cloneyou": "node --test cloneYou/tests/*.test.js",
+    "test:wiki": "node --test wiki-modern-warfare/tests/*.test.js",
+    "test:portfolio": "node --test portfolio-talles/tests/*.test.js",
+    "test:estacao": "node --test estacao-pc/tests/*.test.js"
+  }
+}

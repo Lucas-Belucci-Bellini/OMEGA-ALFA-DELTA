@@ -4,16 +4,28 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const path = require("node:path");
 
-let chromium = null;
-try {
-    ({ chromium } = require("playwright"));
-} catch {
+function carregarPlaywright() {
     try {
-        ({ chromium } = require("/opt/node22/lib/node_modules/playwright"));
+        return require("playwright"); // instalado dentro do projeto
     } catch {
-        chromium = null;
+        // segue adiante: pode estar instalado globalmente
+    }
+
+    try {
+        // require() nao procura na pasta global do npm, entao perguntamos onde ela fica.
+        const { execSync } = require("node:child_process");
+        const path = require("node:path");
+        const raizGlobal = execSync("npm root -g", {
+            encoding: "utf8",
+            stdio: ["ignore", "pipe", "ignore"]
+        }).trim();
+        return require(path.join(raizGlobal, "playwright"));
+    } catch {
+        return null; // nao esta instalado: os testes deste arquivo sao pulados
     }
 }
+
+const { chromium } = carregarPlaywright() || {};
 
 const pagina = "file://" + path.resolve(__dirname, "..", "index.html");
 const pular = { skip: chromium ? false : "playwright nao instalado" };
