@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minha Loja</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            Minha Loja
+        </div>
+
+        <button class="cart-button" id="cartButton">
+            🛒 Carrinho
+            <span id="cartCount">0</span>
+        </button>
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+            <div>
+                <h1>Bem-vindo à nossa loja</h1>
+
+                <p>
+                    Encontre produtos incríveis por preços especiais.
+                </p>
+
+                <button class="hero-button">
+                    Ver produtos
+                </button>
+            </div>
+        </section>
+
+
+        <section class="products-section">
+
+            <h2>Produtos</h2>
+
+            <div class="products" id="products">
+
+                <!-- Produtos serão inseridos pelo JavaScript -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div class="cart-modal" id="cartModal">
+
+        <div class="cart-content">
+
+            <div class="cart-header">
+                <h2>Seu carrinho</h2>
+
+                <button id="closeCart">
+                    ✕
+                </button>
+            </div>
+
+            <div id="cartItems">
+                <p class="empty-cart">
+                    Seu carrinho está vazio.
+                </p>
+            </div>
+
+            <div class="cart-footer">
+
+                <strong>
+                    Total: R$ <span id="cartTotal">0,00</span>
+                </strong>
+
+                <button class="checkout-button" id="checkoutButton">
+                    Finalizar compra
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p>© 2026 Minha Loja. Todos os direitos reservados.</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
