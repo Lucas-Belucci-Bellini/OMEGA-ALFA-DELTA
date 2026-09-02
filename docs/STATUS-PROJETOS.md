@@ -13,7 +13,7 @@ auditoria registrada e testes executados. Abrir sem erro não é suficiente.
 | `cloneYou` | ✅ | ✅ | ✅ | ✅ | ✅ 16 testes | ✅ |
 | `wiki-modern-warfare` | ✅ | ✅ | ✅ | ✅ | ✅ 16 testes | ✅ |
 | `portfolio-talles` | ✅ | ✅ | ✅ | ✅ | ✅ 14 testes | ✅ |
-| `estacao-pc` | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| `estacao-pc` | ✅ | ✅ | ✅ | ✅ | ✅ 18 testes | ✅ |
 
 ## Material preservado
 
@@ -36,7 +36,24 @@ projeto abre sozinho e nenhum usa arquivo de outro.
 node --test tests/*.test.js
 ```
 
-Estado atual: **17 verificações, todas passando** — reconferidas depois de cada ciclo. Os quatro projetos ativos e os
+Estado atual: **17 verificações, todas passando** — reconferidas depois de cada ciclo.
+
+Somando as baterias de cada projeto, o repositório tem **81 verificações**:
+
+| Onde | Verificações |
+| --- | --- |
+| raiz (`tests/isolamento.test.js`) | 17 |
+| `cloneYou/tests/` | 16 |
+| `wiki-modern-warfare/tests/` | 16 |
+| `portfolio-talles/tests/` | 14 |
+| `estacao-pc/tests/` | 18 |
+
+**Um defeito de menu apareceu em três dos quatro projetos.** O `wiki`, o
+`portfolio` e o `estacao-pc` nasceram da mesma estrutura de cabeçalho e herdaram
+a mesma falha: o menu do celular não fechava ao escolher uma seção. Cada um foi
+corrigido no seu próprio ciclo, sem misturar projetos — mas a origem comum vale
+ficar registrada, porque é o tipo de coisa que volta junto se alguém copiar o
+cabeçalho para um projeto novo. Os quatro projetos ativos e os
 cinco diretórios originais estão isolados; os quatro ativos não têm nenhuma
 referência local quebrada.
 
@@ -99,6 +116,25 @@ referência local quebrada.
   deixou de existir — toda a arte da página é feita em CSS.
 - Testes: 7 estruturais + 7 de interface. Três são regressão.
 
+### estacao-pc — finalizado
+
+- Auditoria: [`estacao-pc/docs/auditoria.md`](../estacao-pc/docs/auditoria.md)
+- **D1 corrigido** — o terceiro projeto com o mesmo defeito de menu.
+- **D2 corrigido** — as abas declaravam `role="tab"` dentro de `role="tablist"`
+  sem cumprir nada do que isso promete: a seta do teclado não fazia nada, não
+  havia `aria-controls` nem `role="tabpanel"`, e as três estavam na ordem de
+  tabulação. Quem usa leitor de tela ouvia "aba, 1 de 3", tentava as setas e não
+  acontecia nada. Passaram a se declarar pelo que são — botões com
+  `aria-pressed` — em vez de prometer o que não entregam.
+- **D3 corrigido** — a mesma fonte do Google era pedida duas vezes: `@import` na
+  primeira linha do CSS **e** `<link>` no HTML, com a URL idêntica. Medido no
+  navegador: duas requisições iguais. Ficou o `<link>`, que sai antes e já vem
+  com `preconnect`.
+- **D4 corrigido** — a numeração das peças concatenava um zero e sairia "010" no
+  décimo item. Com quatro peças ninguém via; acrescentar peças é exercício
+  sugerido no README.
+- Testes: 9 estruturais + 9 de interface. Cinco são regressão.
+
 ## Problemas encontrados em um projeto que pertencem a outro
 
 Nada registrado até aqui. Conforme a regra 19, um problema descoberto durante o
@@ -107,4 +143,4 @@ do dono, nunca no ciclo em andamento.
 
 | Descoberto em | Pertence a | Problema | Situação |
 | --- | --- | --- | --- |
-| `cloneYou` | os 3 outros ativos | `cloneYou/docs/validacao-novos-projetos.md` documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e `estacao-pc` — documentação de três projetos dentro de um quarto | 🔄 2 de 3 absorvidos (`wiki-modern-warfare`, `portfolio-talles`); o arquivo sai quando o último absorver a sua parte |
+| `cloneYou` | os 3 outros ativos | `cloneYou/docs/validacao-novos-projetos.md` documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e `estacao-pc` — documentação de três projetos dentro de um quarto | ✅ resolvido — os três absorveram a sua parte e o arquivo compartilhado saiu no fim do ciclo do `estacao-pc`; o arquivo sai quando o último absorver a sua parte |
