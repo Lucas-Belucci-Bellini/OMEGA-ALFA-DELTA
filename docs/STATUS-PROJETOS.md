@@ -19,13 +19,17 @@ auditoria registrada e testes executados. Abrir sem erro não é suficiente.
 
 | Diretório | Situação | Decisão |
 | --- | --- | --- |
-| `ALFA` | Quebrado (CSS com nome trocado, 9 imagens ausentes) | ⬜ a decidir |
-| `site_DuDuzinVideoJogus_01` | `script.js` ausente | ⬜ a decidir |
-| `site_pedrocamposcoimbra8-afk_01` | Sem `<link>` para o CSS | ⬜ a decidir |
-| `site_felipebrayan1403-cell_01` | CSS aponta para `cdd/`, que não existe | ⬜ a decidir |
-| `site_ajuda_pensamento_01` | Funcional | ⬜ a decidir |
-| `projeto_analise_algoritmos` | Compilável | ⬜ a decidir |
-| `projeto_analise_algoritmos_corrigido` | Sem `src/`; 20 MB de JDK versionado | ⬜ a decidir |
+| `ALFA` | Quebrado (CSS com nome trocado, 9 imagens ausentes) | ✅ **fica intocado** + `LEIA-ME.md` |
+| `site_DuDuzinVideoJogus_01` | `script.js` ausente | ✅ **fica intocado** + `LEIA-ME.md` |
+| `site_pedrocamposcoimbra8-afk_01` | Sem `<link>` para o CSS | ✅ **fica intocado** + `LEIA-ME.md` |
+| `site_felipebrayan1403-cell_01` | CSS aponta para `cdd/`, que não existe | ✅ **fica intocado** + `LEIA-ME.md` |
+| `site_ajuda_pensamento_01` | 🟡 **JavaScript inteiro morto** — `var(--secondary)` na linha 69 do `script.js` | ✅ **fica intocado** + `LEIA-ME.md` |
+
+Nenhum arquivo original foi editado. Cada pasta ganhou **só** um `LEIA-ME.md`
+novo, com o diagnóstico e o aviso de não consertar. As decisões estão em
+[`MATERIAL-PRESERVADO.md`](MATERIAL-PRESERVADO.md).
+| `projeto_analise_algoritmos` | 🔴 **Não compilava** — duas vírgulas faltando em `Main.java` | ✅ corrigido; compila e roda. Recebeu o README da entrega e o `ENUNCIADO.md` |
+| `projeto_analise_algoritmos_corrigido` | Sem `src/`; 20 MB de JDK versionado | ✅ **unido ao irmão** — era a outra metade da mesma entrega |
 
 ## Isolamento
 
@@ -144,3 +148,32 @@ do dono, nunca no ciclo em andamento.
 | Descoberto em | Pertence a | Problema | Situação |
 | --- | --- | --- | --- |
 | `cloneYou` | os 3 outros ativos | `cloneYou/docs/validacao-novos-projetos.md` documenta a validação de `wiki-modern-warfare`, `portfolio-talles` e `estacao-pc` — documentação de três projetos dentro de um quarto | ✅ resolvido — os três absorveram a sua parte e o arquivo compartilhado saiu no fim do ciclo do `estacao-pc`; o arquivo sai quando o último absorver a sua parte |
+
+## Duas correções do próprio inventário
+
+Vale registrar, porque as duas tiveram a mesma causa — **julgar sem rodar**:
+
+| O que o inventário dizia | O que a medição mostrou |
+| --- | --- |
+| `projeto_analise_algoritmos` é "compilável" (porque tem o `src/` completo) | O `javac` falha com sete erros: faltavam duas vírgulas em `Main.java` |
+| `site_ajuda_pensamento_01` é "funcional" (porque o CSS carrega) | `SyntaxError: Unexpected token 'var'` — o `script.js` inteiro está desligado |
+
+Nos dois casos a aparência era boa e o arquivo estava quebrado. É exatamente o
+tipo de coisa que os testes agora pegam sozinhos.
+
+## O repositório antes e depois
+
+| | Antes | Depois |
+| --- | --- | --- |
+| Tamanho da árvore de trabalho | 23 MB | **1 MB** |
+| Maior pasta | `oracleJdk-26/` (20 MB, JDK do Windows) | `wiki-modern-warfare` (296 KB) |
+| Projetos que não compilavam / não rodavam | 2 (o Java, e o `_corrigido` sem `src/`) | **0** |
+| Testes automatizados | 1 arquivo, em um módulo opcional | **81 verificações**, em 9 arquivos |
+| Projetos sem `docs/auditoria.md` | 4 | **0** |
+| Documentação de um projeto dentro de outro | sim | não |
+| `.gitignore` | não existia | existe |
+
+> O clone do repositório **não** encolheu: o histórico do Git continua com tudo,
+> inclusive os 20 MB do JDK. Encolher o histórico exigiria reescrevê-lo e
+> quebraria todos os clones existentes. O que mudou é o que se encontra ao abrir
+> a pasta hoje.
