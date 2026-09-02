@@ -463,8 +463,11 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeModal();
 
+    // O card inteiro recebe foco (tabindex="0"), mas ele tem um botao dentro.
+    // Sem comparar com event.target, o Enter no botao "Mais opcoes" abriria o
+    // modal em vez de acionar o proprio botao.
     const card = event.target.closest(".video-card");
-    if (card && (event.key === "Enter" || event.key === " ")) {
+    if (card && event.target === card && (event.key === "Enter" || event.key === " ")) {
         event.preventDefault();
         const video = videoCatalog.find((item) => item.id === Number(card.dataset.videoId));
         if (video) openModal(video);
