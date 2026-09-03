@@ -5,10 +5,20 @@ const toastTriggers = document.querySelectorAll("[data-toast]");
 let toastTimeout;
 
 // O menu mobile usa uma classe no cabeçalho para abrir e fechar a navegação.
-menuToggle.addEventListener("click", () => {
-    const isOpen = topbar.classList.toggle("menu-open");
+function setMenu(isOpen) {
+    topbar.classList.toggle("menu-open", isOpen);
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+}
+
+menuToggle.addEventListener("click", () => {
+    setMenu(!topbar.classList.contains("menu-open"));
+});
+
+// Sem isto o menu continuaria aberto por cima da seção que o visitante
+// acabou de escolher — e ele teria que descobrir sozinho como fechá-lo.
+document.querySelectorAll(".nav a").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
 });
 
 function showToast(message) {

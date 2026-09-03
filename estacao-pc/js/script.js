@@ -36,31 +36,41 @@ function renderProfile(profileName) {
     document.querySelector(".build-panel__intro p").textContent = profile.description;
     partsList.innerHTML = profile.parts.map((part, index) => `
         <div class="part">
-            <span class="part__index">0${index + 1}</span>
+            <span class="part__index">${String(index + 1).padStart(2, "0")}</span>
             <span class="part__name">${part}</span>
             <span class="part__choice">sugestão</span>
         </div>
     `).join("");
 }
 
-// A aba ativa troca os dados do painel sem recarregar a página.
+// O botão ativo troca os dados do painel sem recarregar a página.
+// aria-pressed diz a quem usa leitor de tela qual perfil está em exibição.
 buildTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
         buildTabs.forEach((button) => {
-            button.classList.remove("is-active");
-            button.setAttribute("aria-selected", "false");
+            const ativo = button === tab;
+            button.classList.toggle("is-active", ativo);
+            button.setAttribute("aria-pressed", String(ativo));
         });
-        tab.classList.add("is-active");
-        tab.setAttribute("aria-selected", "true");
         renderProfile(tab.dataset.build);
     });
 });
 
 // O menu recebe a classe menu-open para mostrar a navegação em telas pequenas.
-menuToggle.addEventListener("click", () => {
-    const isOpen = topbar.classList.toggle("menu-open");
+function setMenu(isOpen) {
+    topbar.classList.toggle("menu-open", isOpen);
     menuToggle.setAttribute("aria-expanded", String(isOpen));
     menuToggle.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
+}
+
+menuToggle.addEventListener("click", () => {
+    setMenu(!topbar.classList.contains("menu-open"));
+});
+
+// Sem isto o menu continuaria aberto por cima da seção que o visitante
+// acabou de escolher — e ele teria que descobrir sozinho como fechá-lo.
+document.querySelectorAll(".nav a").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
 });
 
 function showToast(message) {

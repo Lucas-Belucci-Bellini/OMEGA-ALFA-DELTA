@@ -69,10 +69,13 @@ cloneYou/
 ├── js/
 │   └── script.js
 ├── docs/
+│   ├── auditoria.md
 │   ├── integracao-fontes.md
 │   ├── validacao.md
-│   ├── validacao-novos-projetos.md
 │   └── validacao-opcional.md
+├── tests/
+│   ├── estrutura.test.js
+│   └── interface.test.js
 ├── opcionais/
 │   ├── fila-inteligente/
 │   └── interacoes-video/
@@ -88,5 +91,56 @@ Para usar, abra `opcionais/fila-inteligente/index.html`. Para integrar ao clone 
 ## Segundo módulo opcional: interações de vídeo
 
 A pasta [`opcionais/interacoes-video`](./opcionais/interacoes-video) é um exercício menor para iniciantes. Ela mostra curtida, não gostei, salvar, formulário de comentários, remoção de comentários e persistência no `localStorage`. O guia em [`opcionais/interacoes-video/README.md`](./opcionais/interacoes-video/README.md) explica cada etapa com linguagem simples. Recomenda-se estudar este módulo antes da fila inteligente.
+
+## Testes
+
+O projeto tem duas baterias, ambas na pasta `tests/`.
+
+```bash
+# dentro da pasta cloneYou
+node --test tests/*.test.js
+```
+
+> Use `tests/*.test.js` mesmo, e não `tests/`: nesta versão do Node, passar a
+> pasta faz o runner tentar carregá-la como se fosse um arquivo.
+
+| Bateria | O que cobre | Precisa de quê |
+| --- | --- | --- |
+| `estrutura.test.js` | O `index.html` existe; o CSS e o JS que ele pede existem; nenhum caminho local está quebrado; o projeto não referencia arquivo de outro projeto; todo `id` que o script procura está no HTML; `[hidden]` continua protegido no CSS; todo botão só de ícone tem `aria-label`. | Só o Node. Sem instalar nada. |
+| `interface.test.js` | Abre a página no Chromium **sem internet** e confere: os 12 cards, a busca sem resultado, os filtros, o modal pelo teclado, o botão ⋮ pelo teclado, o tema escuro sobrevivendo ao recarregamento, ausência de rolagem horizontal em 390/820/1440 px e ausência de erro de JavaScript. | Playwright. Se não estiver instalado, **os testes são pulados**, não falham. |
+
+Para rodar a segunda bateria de verdade:
+
+```bash
+npm install -g playwright && npx playwright install chromium
+```
+
+Dois testes de `interface.test.js` são **testes de regressão**: eles falham no
+código anterior à correção e passam depois dela. Estão marcados com o defeito
+correspondente da auditoria (D1 e D2) em [`docs/auditoria.md`](docs/auditoria.md).
+
+## Limitações conhecidas
+
+- **A página precisa de internet para ficar completa.** As 12 miniaturas vêm do
+  Unsplash, os ícones do Font Awesome e a fonte do Google Fonts. Offline a página
+  **abre e funciona** — a grade tem `aspect-ratio`, então o layout não quebra e as
+  miniaturas viram blocos cinza —, mas os ícones somem e vários botões ficam
+  visualmente vazios. O texto alternativo continua lá para leitores de tela.
+- **Não há player real.** O modal mostra uma prévia falsa; não há vídeo, login,
+  upload, banco de dados nem qualquer ligação com o YouTube.
+- **A pesquisa por voz depende do navegador.** Onde a Web Speech API não existe,
+  o botão avisa em vez de falhar.
+- **O teste do módulo `interacoes-video` valida uma cópia da função.** O arquivo
+  `opcionais/interacoes-video/tests/validate-comments.js` reescreve `addComment`
+  dentro do próprio teste em vez de importar a função real do módulo. A parte que
+  confere se os `id` continuam no HTML tem valor; a outra não garante que o
+  `script.js` do módulo esteja certo.
+
+## Histórico
+
+| Quando | O que mudou |
+| --- | --- |
+| Origem | Consolidação de três repositórios de colegas (veja [Consolidação](#consolidação)) em uma interface única e responsiva. |
+| Ciclo de organização | Auditoria registrada em [`docs/auditoria.md`](docs/auditoria.md). Corrigido o botão ⋮, que era inalcançável pelo teclado; o modal passou a receber e devolver o foco; `video.image` passou a ser escapado como os outros campos; adicionada a `<meta name="description">`; criada a pasta `tests/`. Nenhuma mudança visual. |
 
 > Este projeto é um protótipo educacional de front-end. Ele não possui login, banco de dados, upload real de vídeos ou integração oficial com a plataforma YouTube.

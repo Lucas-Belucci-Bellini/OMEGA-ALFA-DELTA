@@ -336,6 +336,14 @@ main {
     color: var(--paper-bright);
 }
 
+/* O filtro da linha do tempo esconde cartoes com o atributo hidden. Hoje isso
+   funciona porque nenhuma regra define display para .timeline-card — no dia em
+   que alguem definir, o filtro pararia de esconder sem erro nenhum no console.
+   Esta regra fecha essa porta. */
+[hidden] {
+    display: none !important;
+}
+
 .timeline {
     display: grid;
     gap: 1rem;

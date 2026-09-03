@@ -76,10 +76,13 @@
                 </div>
                 <p class="section__description">Selecione um perfil para visualizar uma sugestão de equilíbrio entre desempenho e propósito.</p>
             </div>
-            <div class="build-tabs" role="tablist" aria-label="Perfis de montagem">
-                <button class="build-tab is-active" type="button" role="tab" aria-selected="true" data-build="essencial">Essencial <small>estudo</small></button>
-                <button class="build-tab" type="button" role="tab" aria-selected="false" data-build="criador">Criador <small>trabalho</small></button>
-                <button class="build-tab" type="button" role="tab" aria-selected="false" data-build="jogador">Jogador <small>performance</small></button>
+            <!-- Sao tres botoes que trocam o conteudo do painel, e aria-pressed diz
+                 exatamente isso. Um role="tab" prometeria navegacao pelas setas do
+                 teclado, que este projeto nao implementa: melhor nao prometer. -->
+            <div class="build-tabs" role="group" aria-label="Perfis de montagem">
+                <button class="build-tab is-active" type="button" aria-pressed="true" data-build="essencial">Essencial <small>estudo</small></button>
+                <button class="build-tab" type="button" aria-pressed="false" data-build="criador">Criador <small>trabalho</small></button>
+                <button class="build-tab" type="button" aria-pressed="false" data-build="jogador">Jogador <small>performance</small></button>
             </div>
             <div class="build-panel" id="build-panel">
                 <div class="build-panel__intro">

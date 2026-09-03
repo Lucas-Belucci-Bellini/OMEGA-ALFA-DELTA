@@ -242,7 +242,7 @@ function createVideoCard(video) {
 
     return `
         <article class="video-card" tabindex="0" data-video-id="${video.id}" aria-label="Abrir vídeo: ${escapeHtml(video.title)}">
-            <div class="video-card__thumb" style="background-image: url('${video.image}')">
+            <div class="video-card__thumb" style="background-image: url('${escapeHtml(video.image)}')">
                 <span class="video-card__duration ${video.live ? "video-card__duration--live" : ""}">${escapeHtml(video.duration)}</span>
             </div>
             <div class="video-card__body">
@@ -298,16 +298,32 @@ function showToast(message) {
     toastTimeout = setTimeout(() => elements.toast.classList.remove("is-visible"), 2800);
 }
 
+// Guarda quem abriu o modal para devolver o foco quando ele fechar.
+let elementBeforeModal = null;
+
 function openModal(video) {
     elements.modalTitle.textContent = video.title;
     elements.modalChannel.textContent = `${video.channel} · ${video.views}`;
+    elementBeforeModal = document.activeElement;
     elements.modal.hidden = false;
     document.body.classList.add("modal-open");
+
+    // Sem isto o foco fica no card, atras da sobreposicao: quem usa teclado
+    // abriria o modal e continuaria navegando pela pagina de tras.
+    const closeButton = elements.modal.querySelector(".modal__close");
+    if (closeButton) closeButton.focus();
 }
 
 function closeModal() {
+    if (elements.modal.hidden) return;
+
     elements.modal.hidden = true;
     document.body.classList.remove("modal-open");
+
+    if (elementBeforeModal) {
+        elementBeforeModal.focus();
+        elementBeforeModal = null;
+    }
 }
 
 function submitSearch(event) {
@@ -463,8 +479,11 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeModal();
 
+    // O card inteiro recebe foco (tabindex="0"), mas ele tem um botao dentro.
+    // Sem comparar com event.target, o Enter no botao "Mais opcoes" abriria o
+    // modal em vez de acionar o proprio botao.
     const card = event.target.closest(".video-card");
-    if (card && (event.key === "Enter" || event.key === " ")) {
+    if (card && event.target === card && (event.key === "Enter" || event.key === " ")) {
         event.preventDefault();
         const video = videoCatalog.find((item) => item.id === Number(card.dataset.videoId));
         if (video) openModal(video);
